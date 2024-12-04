@@ -2,14 +2,18 @@ import pygame
 import pygame_menu
 from pygame_menu import themes
 
+surface = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE | pygame.FULLSCREEN)
+
 def start_the_game():
     pass
 
-if __name__ == '__main__':
-    if not pygame.get_init():
-        pygame.init()
+def bad_ending():
+    pass
 
-    surface = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE | pygame.FULLSCREEN)
+def good_ending():
+    pass
+
+def mainmenu():
     mainmenu = pygame_menu.Menu('Oregon Trail', 1200, 900,
                                 theme=themes.THEME_ORANGE)
     mainmenu.add.label('Welcome to Mars!')
@@ -25,3 +29,9 @@ if __name__ == '__main__':
             mainmenu.update(events)
             mainmenu.draw(surface)
         pygame.display.update()
+
+if __name__ == '__main__':
+    if not pygame.get_init():
+        pygame.init()
+
+    mainmenu()
