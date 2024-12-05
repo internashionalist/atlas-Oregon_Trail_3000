@@ -2,6 +2,10 @@ import pygame
 import pygame_menu
 from pygame_menu import themes
 import sys
+import os
+
+os.environ["SDL_AUDIODRIVER"] = "dummy"
+pygame.mixer.quit()
 
 pygame.init() # start 'er up
 
@@ -18,9 +22,9 @@ encounters = [
     {
       "text": "something something DOOM",
       "choices": [
-        {"text": "Fight (-20 health)", "health change": -20},
-        {"text": "Flee (-15 health)", "health change": -15},
-        {"text": "Romance (-5 health)", "health change": -5}
+        {"text": "Fight (-20 health)", "health_change": -20},
+        {"text": "Flee (-15 health)", "health_change": -15},
+        {"text": "Romance (-5 health)", "health_change": -5}
       ]
     },
     # more encounters
@@ -50,14 +54,14 @@ def encounter_choice(encounter):
                 sys.exit()
             if event.type == pygame.KEYDOWN: # key presses for choices
                 if event.key == pygame.K_1:
-                    return encounter["choices"][0]["health change"]
+                    return encounter["choices"][0]["health_change"]
                 if event.key == pygame.K_2:
-                    return encounter["choices"][1]["health change"]
+                    return encounter["choices"][1]["health_change"]
                 if event.key == pygame.K_3:
-                    return encounter["choices"][2]["health change"]
+                    return encounter["choices"][2]["health_change"]
 
 def bad_ending(): # DYSENTERY
-    surface.fill((0, 0, 0))
+    surface.fill(BLACK)
     display_text(surface, "You have died of dysentery.", 100, 300)
     pygame.display.flip()
     pygame.time.delay(5000) # is five seconds enough?
@@ -68,7 +72,7 @@ def good_ending():
     pygame.display.flip()
     pygame.time.delay(5000)
 
-def start_game():
+def start_the_game():
     health = 100 # any other variables?
     encounter_index = 0
 
@@ -118,9 +122,8 @@ def mainmenu():
                 pygame.quit()
                 sys.exit()
 
-        if mainmenu.is_enabled():
-            mainmenu.update(events)
-            mainmenu.draw(surface)
+        mainmenu.update(events)
+        mainmenu.draw(surface)
 
         pygame.display.update()
 
