@@ -4,7 +4,7 @@ from pygame_menu import themes
 import sys
 import os
 
-os.environ["DISPLAY"] = "host.docker.internal:0"
+os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init() # start 'er up
@@ -40,11 +40,11 @@ def health_bar(screen, health):
 
 def encounter_choice(encounter):
     surface.fill(BLACK)
-    display_text(surface, encounter["text"], 100, 300)
+    display_text(surface, encounter["text"] + '\n', 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
-        display_text(surface, f"{i + 1}: {choice['text']}", 100, 300 + i * 50)
-    
+        display_text(surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50)
+
     pygame.display.flip()
 
     while True: # main game loop draft
