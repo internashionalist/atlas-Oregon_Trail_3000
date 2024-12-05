@@ -4,8 +4,8 @@ from pygame_menu import themes
 import sys
 import os
 
+os.environ["DISPLAY"] = "host.docker.internal:0"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
-pygame.mixer.quit()
 
 pygame.init() # start 'er up
 
@@ -124,7 +124,6 @@ def mainmenu():
 
         mainmenu.update(events)
         mainmenu.draw(surface)
-
         pygame.display.update()
 
 if __name__ == '__main__':
