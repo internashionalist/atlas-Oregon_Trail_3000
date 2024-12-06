@@ -4,13 +4,16 @@ from pygame_menu import themes
 import sys
 import os
 
-os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init() # start 'er up
 
 screen_width, screen_height = 1920, 1080
 surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
+
+# sample image
+sample_image = pygame.image.load("assets/original_finale.jpg")
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
@@ -40,6 +43,8 @@ def health_bar(screen, health):
 
 def encounter_choice(encounter):
     surface.fill(BLACK)
+    surface.blit(sample_image, (0, 0))
+    pygame.display.set_caption('A pentagram approaches')
     display_text(surface, encounter["text"] + '\n', 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
