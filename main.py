@@ -4,7 +4,7 @@ from pygame_menu import themes
 import sys
 import os
 
-# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init() # start 'er up
@@ -27,7 +27,7 @@ encounters = [
         {"text": "Flee (-15 health)", "health_change": -15},
         {"text": "Romance (-5 health)", "health_change": -5}
       ],
-      "image": pygame.image.load("assets/1920x1080-mars-landscape.jpg")
+      "background_image": pygame.image.load("assets/1920x1080-mars-landscape.jpg")
     },
     # more encounters
 ]
@@ -47,7 +47,7 @@ def scale_image(image, screen_width, screen_height):
 def encounter_choice(encounter):
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
-    resized_encounter_image = scale_image(encounter['image'], current_screen_width, current_screen_height)
+    resized_encounter_image = scale_image(encounter['background_image'], current_screen_width, current_screen_height)
     surface.blit(resized_encounter_image, (0, 0))
     display_text(surface, encounter["text"] + '\n', 100, 300)
 
