@@ -4,10 +4,11 @@ from pygame_menu import themes
 import sys
 import os
 
-os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init() # start 'er up
+username = ''
 
 screen_width, screen_height = 1920, 1080
 surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
@@ -25,7 +26,8 @@ encounters = [
         {"text": "Fight (-20 health)", "health_change": -20},
         {"text": "Flee (-15 health)", "health_change": -15},
         {"text": "Romance (-5 health)", "health_change": -5}
-      ]
+      ],
+      "image": pygame.image.load("assets/1920x1080-mars-landscape.jpg")
     },
     # more encounters
 ]
@@ -38,8 +40,15 @@ def health_bar(screen, health):
     pygame.draw.rect(screen, RED, (10, 50, 200, 50))
     pygame.draw.rect(screen, GREEN, (10, 50, health * 2, 50))
 
+def scale_image(image, screen_width, screen_height):
+    # scales an image to the current screen height
+    return pygame.transform.scale(image, (screen_width, screen_height))
+
 def encounter_choice(encounter):
     surface.fill(BLACK)
+    current_screen_width, current_screen_height = surface.get_size()
+    resized_encounter_image = scale_image(encounter['image'], current_screen_width, current_screen_height)
+    surface.blit(resized_encounter_image, (0, 0))
     display_text(surface, encounter["text"] + '\n', 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
@@ -59,20 +68,23 @@ def encounter_choice(encounter):
                     return encounter["choices"][1]["health_change"]
                 if event.key == pygame.K_3:
                     return encounter["choices"][2]["health_change"]
+            # elif event.type == pygame.VIDEORESIZE:  # DEBUG: Not working yet
+            #     screen_width, screen_height = event.w, event.h
+            #     surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
 
-def bad_ending(): # DYSENTERY
+def bad_ending(username): # DYSENTERY
     surface.fill(BLACK)
-    display_text(surface, "You have died of dysentery.", 100, 300)
+    display_text(surface, f"You, {username} have died of dysentery.", 100, 300)
     pygame.display.flip()
     pygame.time.delay(5000) # is five seconds enough?
 
-def good_ending():
+def good_ending(username):
     surface.fill((0, 0, 0))
-    display_text(surface, "You have reached Oregon!", 100, 300)
+    display_text(surface, f"You, {username}, have reached Oregon!", 100, 300)
     pygame.display.flip()
-    pygame.time.delay(5000)
+    pygame.time.delay(1000)  # DEBUG: LOWER IF NEEDED FOR TESTING
 
-def start_the_game():
+def start_the_game(username):
     health = 100 # any other variables?
     encounter_index = 0
 
@@ -85,7 +97,7 @@ def start_the_game():
 
         if encounter_index >= len(encounters): # if all encounters are done
             running = False
-            good_ending() if health > 0 else bad_ending()
+            good_ending(username) if health > 0 else bad_ending()
             break
 
         result = encounter_choice(encounters[encounter_index]) # grab result from encounter
@@ -94,7 +106,7 @@ def start_the_game():
 
         if health <= 0: # if you die
             running = False
-            bad_ending()
+            bad_ending(username)
             break
 
         surface.fill(BLACK)
@@ -111,8 +123,8 @@ def mainmenu():
         theme=pygame_menu.themes.THEME_ORANGE
     )
     mainmenu.add.label('Welcome to Mars!')
-    mainmenu.add.text_input('Name: ', default='username', maxchar=25)
-    mainmenu.add.button('Play', start_the_game)
+    name_input = mainmenu.add.text_input('Name: ', default='username', maxchar=25)
+    mainmenu.add.button('Play', lambda: start_the_game(name_input.get_value()))
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
 
     while True:
