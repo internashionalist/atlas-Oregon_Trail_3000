@@ -27,7 +27,22 @@ encounters = [
         {"text": "Flee (-15 health)", "health_change": -15},
         {"text": "Romance (-5 health)", "health_change": -5}
       ],
-      "background_image": pygame.image.load("assets/1920x1080-mars-landscape.jpg")
+      "background_image": pygame.image.load("assets/1920x1080-mars-landscape.jpg"),
+      "reaction_image_1": pygame.image.load("assets/original_finale.jpg"),
+      "reaction_image_2": 'pygame.image.load("FILL_IN")', # uncomment and adjust if desired
+      "reaction_image_3": 'pygame.image.load("FILL_IN")'
+    },
+    {
+      "text": "A friendly TSA Agent asks you about any anti-Skynet Affiliations",
+      "choices": [
+        {"text": "Fight (-20 health)", "health_change": -20},
+        {"text": "Flee (-15 health)", "health_change": -15},
+        {"text": "Romance (-5 health)", "health_change": -5}
+      ],
+      "background_image": pygame.image.load("assets/T-1000_terminator.jpg"),
+      "reaction_image_1": pygame.image.load("assets/original_finale.jpg"),
+      "reaction_image_2": 'pygame.image.load("FILL_IN")', # uncomment and adjust if desired
+      "reaction_image_3": 'pygame.image.load("FILL_IN")'
     },
     # more encounters
 ]
@@ -62,15 +77,27 @@ def encounter_choice(encounter):
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN: # key presses for choices
+                current_screen_width, current_screen_height = surface.get_size()
+                width_centered = current_screen_width / 2 - 1980 / 4
+                height_centered = current_screen_height / 2 - 1080 / 4
                 if event.key == pygame.K_1:
+                    if isinstance(encounter['reaction_image_1'], pygame.surface.Surface):  # if it's an image, then show it
+                        surface.blit(encounter['reaction_image_1'], (width_centered, height_centered))
+                        pygame.display.flip()
+                        pygame.time.delay(3000)
                     return encounter["choices"][0]["health_change"]
                 if event.key == pygame.K_2:
+                    if isinstance(encounter['reaction_image_2'], pygame.surface.Surface):
+                        surface.blit(encounter['reaction_image_2'], (width_centered, height_centered))
+                        pygame.display.flip()
+                        pygame.time.delay(3000)
                     return encounter["choices"][1]["health_change"]
                 if event.key == pygame.K_3:
+                    if isinstance(encounter['reaction_image_3'], pygame.surface.Surface):
+                        surface.blit(encounter['reaction_image_3'], (width_centered, height_centered))
+                        pygame.display.flip()
+                        pygame.time.delay(3000)
                     return encounter["choices"][2]["health_change"]
-            # elif event.type == pygame.VIDEORESIZE:  # DEBUG: Not working yet
-            #     screen_width, screen_height = event.w, event.h
-            #     surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
 
 def bad_ending(username): # DYSENTERY
     surface.fill(BLACK)
