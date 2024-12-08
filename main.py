@@ -139,6 +139,9 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
         display_text(surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50)
     pygame.display.flip()
 
+    resource_display(surface, health, ammo, fuel, supplies)
+    pygame.display.flip()
+
     while True:  # main game loop with choice selection
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -152,6 +155,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 surface.blit(reaction_image, (0, 0))
                 pygame.draw.rect(surface, BLACK, pygame.Rect(50, screen_height - 150, screen_width - 100, 100))
                 display_text(surface, flavor_text, 60, screen_height - 120)
+                resource_display(surface, health, ammo, fuel, supplies)
                 pygame.display.flip()
                 pygame.time.delay(3000)
 
