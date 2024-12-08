@@ -23,16 +23,16 @@ font = pygame.font.Font(None, 36)
 
 encounters = [
     {
-      "text": "something something DOOM",
+      "text": "A swarm of Lost Souls surrounds your vehicle, screeching and blazing with fiery auras.",
       "choices": [
-        {"text": "Fight (-20 health)", "health_change": -20},
-        {"text": "Flee (-15 health)", "health_change": -15},
-        {"text": "Romance (-5 health)", "health_change": -5}
+        {"text": "Fight with your handy shotgun (-15 health, -3 ammo, +3 supplies)", "health_change": -15, "ammo_change": -3, "fuel_change": 0, "supply_change": +3},
+        {"text": "Step on the gas (-2 fuel, -5 health)", "health_change": -5, "ammo_change": 0, "fuel_change": -2, "supply_change": 0},
+        {"text": "Make an offering to the lost (-2 supplies, +1 ammo)", "health_change": 0, "ammo_change": +1, "fuel_change": 0, "supply_change": -2}
       ],
-      "background_image": pygame.image.load("assets/1920x1080-mars-landscape.jpg"),
-      "reaction_image_1": pygame.image.load("assets/original_finale.jpg"),
-      "reaction_image_2": 'pygame.image.load("FILL_IN")', # uncomment and adjust if desired
-      "reaction_image_3": 'pygame.image.load("FILL_IN")'
+      "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
+      "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
+      "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
+      "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
     },
     {
       "text": "A friendly TSA Agent asks you about any anti-Skynet Affiliations",
@@ -64,13 +64,13 @@ def draw_resource_bar(screen, x, y, width, height, current_value, max_value, col
     screen.blit(text_surface, (text_x, text_y))
 
 def resource_display(screen, health, ammo, fuel, supplies):
-    draw_resource_bar(screen, 50, 50, 300, 30, health, 100, GREEN)  # Health
+    draw_resource_bar(screen, 50, 50, 300, 30, health, 100, GREEN)
     display_text(screen, "Health", 360, 50)
-    draw_resource_bar(screen, 50, 100, 300, 30, ammo, 50, BLUE)     # Ammo
+    draw_resource_bar(screen, 50, 100, 300, 30, ammo, 50, BLUE)
     display_text(screen, "Ammo", 360, 100)
-    draw_resource_bar(screen, 50, 150, 300, 30, fuel, 20, ORANGE)   # Fuel
+    draw_resource_bar(screen, 50, 150, 300, 30, fuel, 20, ORANGE)
     display_text(screen, "Fuel", 360, 150)
-    draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, GREEN)  # Supplies
+    draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, GREEN)
     display_text(screen, "Supplies", 360, 200)
 
 def scale_image(image, screen_width, screen_height):
@@ -86,7 +86,6 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
 
     for i, choice in enumerate(encounter["choices"]):
         display_text(surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50)
-
     pygame.display.flip()
 
     while True:  # main game loop with choice selection
@@ -114,6 +113,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                     ammo += choice.get("ammo_change", 0)
                     fuel += choice.get("fuel_change", 0)
                     supplies += choice.get("supply_change", 0)
+
+                    surface.fill(BLACK)
+                    resource_display(surface, health, ammo, fuel, supplies)
+                    pygame.display.flip()
 
                 return health, ammo, fuel, supplies
 
