@@ -77,7 +77,7 @@ def scale_image(image, screen_width, screen_height):
     # scales an image to the current screen height
     return pygame.transform.scale(image, (screen_width, screen_height))
 
-def encounter_choice(encounter):
+def encounter_choice(encounter, health, ammo, fuel, supplies):
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
     resized_encounter_image = scale_image(encounter['background_image'], current_screen_width, current_screen_height)
@@ -134,10 +134,13 @@ def start_the_game(username):
     encounter_index = 0
 
     while encounter_index < len(encounters):
-        health, ammo, fuel, supplies = encounter_choice(encounters[encounter_index], health, ammo, fuel, supplies)
+        health, ammo, fuel, supplies = encounter_choice(
+            encounters[encounter_index], health, ammo, fuel, supplies
+        )
         if health <= 0 or ammo <= 0 or fuel <= 0 or supplies <= 0:
             bad_ending(username)
             return
+
         encounter_index += 1
         surface.fill(BLACK)
         resource_display(surface, health, ammo, fuel, supplies)
