@@ -5,6 +5,7 @@ import sys
 import os
 
 os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init() # start 'er up
@@ -143,39 +144,22 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN:  # key presses
-                if event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
-                    choice_index = event.key - pygame.K_1  # map keys to index
-                    reaction_image_key = f"reaction_image_{choice_index + 1}"
-                    
-                    if reaction_image_key in encounter and isinstance(encounter[reaction_image_key], pygame.surface.Surface):
-                        current_screen_width, current_screen_height = surface.get_size()
-                        reaction_image = encounter[reaction_image_key]
-                        width_centered = (current_screen_width - reaction_image.get_width()) / 2
-                        height_centered = (current_screen_height - reaction_image.get_height()) / 2
+            if event.type == pygame.KEYDOWN and event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
+                choice_index = event.key - pygame.K_1
+                reaction_image = encounter[f"reaction_image_{choice_index + 1}"]
+                flavor_text = encounter["flavor_texts"][choice_index]
 
-                        surface.blit(reaction_image, (width_centered, height_centered))
+                surface.blit(reaction_image, (0, 0))
+                pygame.draw.rect(surface, BLACK, pygame.Rect(50, screen_height - 150, screen_width - 100, 100))
+                display_text(surface, flavor_text, 60, screen_height - 120)
+                pygame.display.flip()
+                pygame.time.delay(3000)
 
-                        flavor_text_background = pygame.Rect(
-                            50, current_screen_height - 150, current_screen_width - 100, 100
-                        )
-                        pygame.draw.rect(surface, BLACK, flavor_text_background)
-
-                        flavor_text = encounter["flavor_texts"][choice_index]
-                        display_text(surface, flavor_text, 60, current_screen_height - 120)
-
-                        pygame.display.flip()
-                        pygame.time.delay(3000)
-
-                    choice = encounter["choices"][choice_index]
-                    health += choice.get("health_change", 0)
-                    ammo += choice.get("ammo_change", 0)
-                    fuel += choice.get("fuel_change", 0)
-                    supplies += choice.get("supply_change", 0)
-
-                    surface.fill(BLACK)
-                    resource_display(surface, health, ammo, fuel, supplies)
-                    pygame.display.flip()
+                choice = encounter["choices"][choice_index]
+                health += choice.get("health_change", 0)
+                ammo += choice.get("ammo_change", 0)
+                fuel += choice.get("fuel_change", 0)
+                supplies += choice.get("supply_change", 0)
 
                 return health, ammo, fuel, supplies
 
@@ -189,25 +173,19 @@ def good_ending(username):
     surface.fill((0, 0, 0))
     display_text(surface, f"You, {username}, have reached Oregon!", 100, 300)
     pygame.display.flip()
-    pygame.time.delay(1000)  # DEBUG: LOWER IF NEEDED FOR TESTING
+    pygame.time.delay(5000)  # DEBUG: LOWER IF NEEDED FOR TESTING
 
 def start_the_game(username):
     health, ammo, fuel, supplies = 100, 50, 20, 10
     encounter_index = 0
 
-    while encounter_index < len(encounters):
-        health, ammo, fuel, supplies = encounter_choice(
-            encounters[encounter_index], health, ammo, fuel, supplies
-        )
+    for encounter in encounters:
+        health, ammo, fuel, supplies = encounter_choice(encounter, health, ammo, fuel, supplies)
         if health <= 0 or ammo <= 0 or fuel <= 0 or supplies <= 0:
             bad_ending(username)
             return
-
-        encounter_index += 1
-        surface.fill(BLACK)
         resource_display(surface, health, ammo, fuel, supplies)
         pygame.display.flip()
-
     good_ending(username)
 
 
