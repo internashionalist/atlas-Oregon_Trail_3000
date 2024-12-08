@@ -23,28 +23,74 @@ font = pygame.font.Font(None, 36)
 
 encounters = [
     {
-      "text": "A swarm of Lost Souls surrounds your vehicle, screeching and blazing with fiery auras.",
-      "choices": [
-        {"text": "Fight with your handy shotgun (-15 health, -3 ammo, +3 supplies)", "health_change": -15, "ammo_change": -3, "fuel_change": 0, "supply_change": +3},
-        {"text": "Step on the gas (-2 fuel, -5 health)", "health_change": -5, "ammo_change": 0, "fuel_change": -2, "supply_change": 0},
-        {"text": "Make an offering to the lost (-2 supplies, +1 ammo)", "health_change": 0, "ammo_change": +1, "fuel_change": 0, "supply_change": -2}
-      ],
-      "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
-      "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
-      "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
-      "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
+        "text": "A swarm of Lost Souls surrounds your vehicle, screeching and blazing with fiery auras.",
+        "choices": [
+        {
+            "text": "Fight with your handy shotgun (-15 health, -3 ammo, +3 supplies)",
+            "health_change": -15,
+            "ammo_change": -3,
+            "fuel_change": 0,
+            "supply_change": +3
+        },
+        {
+            "text": "Step on the gas (-2 fuel, -5 health)",
+            "health_change": -5,
+            "ammo_change": 0,
+            "fuel_change": -2,
+            "supply_change": 0
+        },
+        {
+            "text": "Make an offering to the lost (-2 supplies, +1 ammo)",
+            "health_change": 0,
+            "ammo_change": +1,
+            "fuel_change": 0,
+            "supply_change": -2
+        }
+    ],
+    "flavor_texts": [
+        "You blast the Lost Souls away, but at the cost of precious ammo and health.",
+        "You speed through the ghostly swarm, but not without a few scratches and some lost fuel.",
+        "You offer the Lost Souls some of your supplies, and they let you pass without incident."
+    ],
+    "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
+    "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
+    "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
+    "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
     },
     {
-      "text": "A friendly TSA Agent asks you about any anti-Skynet Affiliations",
-      "choices": [
-        {"text": "Fight (-20 health)", "health_change": -20},
-        {"text": "Flee (-15 health)", "health_change": -15},
-        {"text": "Romance (-5 health)", "health_change": -5}
-      ],
-      "background_image": pygame.image.load("assets/T-1000_terminator.jpg"),
-      "reaction_image_1": pygame.image.load("assets/original_finale.jpg"),
-      "reaction_image_2": 'pygame.image.load("FILL_IN")', # uncomment and adjust if desired
-      "reaction_image_3": 'pygame.image.load("FILL_IN")'
+        "text": "A river of molten lava blocks your path, glowing with intense heat.",
+        "choices": [
+        {
+            "text": "Build a makeshift bridge (-10 health, -4 supplies)",
+            "health_change": -10,
+            "ammo_change": 0,
+            "fuel_change": 0,
+            "supply_change": -4
+        },
+        {
+            "text": "Endure the searing heat and power through (-30 health, -2 fuel)",
+            "health_change": -30,
+            "ammo_change": 0,
+            "fuel_change": -2,
+            "supply_change": 0
+        },
+        {
+            "text": "Find an alternate route (-4 fuel, -2 supplies)",
+            "health_change": 0,
+            "ammo_change": 0,
+            "fuel_change": -4,
+            "supply_change": -2
+        }
+    ],
+    "flavor_texts": [
+        "You build a bridge out of scrap metal and cross safely, but not without a few burns and bruises.",
+        "You power through the lava, but not without some serious burns and health loss.",
+        "You find an alternate route, but not without losing some fuel and supplies."
+    ],
+    "background_image": pygame.image.load("assets/Lava_River.jpg"),
+    "reaction_image_1": pygame.image.load("assets/Lava_River_Bridge.jpg"),
+    "reaction_image_2": pygame.image.load("assets/Lava_River_Through.jpg"),
+    "reaction_image_3": pygame.image.load("assets/Lava_River_Alternate.jpg")
     },
     # more encounters
 ]
@@ -82,6 +128,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     current_screen_width, current_screen_height = surface.get_size()
     resized_encounter_image = scale_image(encounter['background_image'], current_screen_width, current_screen_height)
     surface.blit(resized_encounter_image, (0, 0))
+
+    text_background_rect = pygame.Rect(50, 250, screen_width - 100, 300)
+    pygame.draw.rect(surface, BLACK, text_background_rect)
+
     display_text(surface, encounter["text"] + '\n', 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
@@ -105,6 +155,15 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                         height_centered = (current_screen_height - reaction_image.get_height()) / 2
 
                         surface.blit(reaction_image, (width_centered, height_centered))
+
+                        flavor_text_background = pygame.Rect(
+                            50, current_screen_height - 150, current_screen_width - 100, 100
+                        )
+                        pygame.draw.rect(surface, BLACK, flavor_text_background)
+
+                        flavor_text = encounter["flavor_texts"][choice_index]
+                        display_text(surface, flavor_text, 60, current_screen_height - 120)
+
                         pygame.display.flip()
                         pygame.time.delay(3000)
 
