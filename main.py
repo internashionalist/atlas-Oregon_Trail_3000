@@ -15,6 +15,8 @@ surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABL
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+ORANGE = (255, 165, 0)
 BLACK = (0, 0, 0)
 
 font = pygame.font.Font(None, 36)
@@ -51,9 +53,25 @@ def display_text(screen, text, x, y):
     rendered_text = font.render(text, True, GREEN)
     screen.blit(rendered_text, (x, y))
 
-def health_bar(screen, health):
-    pygame.draw.rect(screen, RED, (10, 50, 200, 50))
-    pygame.draw.rect(screen, GREEN, (10, 50, health * 2, 50))
+def draw_resource_bar(screen, x, y, width, height, current_value, max_value, color):
+    pygame.draw.rect(screen, RED, (x, y, width, height))
+    fill_width = int((current_value / max_value) * width)
+    pygame.draw.rect(screen, color, (x, y, fill_width, height))
+    resource_text = f"{current_value}/{max_value}"
+    text_surface = font.render(resource_text, True, BLACK)
+    text_x = x + width // 2 - text_surface.get_width() // 2
+    text_y = y + height // 2 - text_surface.get_height() // 2
+    screen.blit(text_surface, (text_x, text_y))
+
+def resource_display(screen, health, ammo, fuel, supplies):
+    draw_resource_bar(screen, 50, 50, 300, 30, health, 100, GREEN)  # Health
+    display_text(screen, "Health", 360, 50)
+    draw_resource_bar(screen, 50, 100, 300, 30, ammo, 50, BLUE)     # Ammo
+    display_text(screen, "Ammo", 360, 100)
+    draw_resource_bar(screen, 50, 150, 300, 30, fuel, 20, ORANGE)   # Fuel
+    display_text(screen, "Fuel", 360, 150)
+    draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, GREEN)  # Supplies
+    display_text(screen, "Supplies", 360, 200)
 
 def scale_image(image, screen_width, screen_height):
     # scales an image to the current screen height
@@ -71,33 +89,33 @@ def encounter_choice(encounter):
 
     pygame.display.flip()
 
-    while True: # main game loop draft
+    while True:  # main game loop with choice selection
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN: # key presses for choices
-                current_screen_width, current_screen_height = surface.get_size()
-                width_centered = current_screen_width / 2 - 1980 / 4
-                height_centered = current_screen_height / 2 - 1080 / 4
-                if event.key == pygame.K_1:
-                    if isinstance(encounter['reaction_image_1'], pygame.surface.Surface):  # if it's an image, then show it
-                        surface.blit(encounter['reaction_image_1'], (width_centered, height_centered))
+            if event.type == pygame.KEYDOWN:  # key presses
+                if event.key in [pygame.K_1, pygame.K_2, pygame.K_3]:
+                    choice_index = event.key - pygame.K_1  # map keys to index
+                    reaction_image_key = f"reaction_image_{choice_index + 1}"
+                    
+                    if reaction_image_key in encounter and isinstance(encounter[reaction_image_key], pygame.surface.Surface):
+                        current_screen_width, current_screen_height = surface.get_size()
+                        reaction_image = encounter[reaction_image_key]
+                        width_centered = (current_screen_width - reaction_image.get_width()) / 2
+                        height_centered = (current_screen_height - reaction_image.get_height()) / 2
+
+                        surface.blit(reaction_image, (width_centered, height_centered))
                         pygame.display.flip()
                         pygame.time.delay(3000)
-                    return encounter["choices"][0]["health_change"]
-                if event.key == pygame.K_2:
-                    if isinstance(encounter['reaction_image_2'], pygame.surface.Surface):
-                        surface.blit(encounter['reaction_image_2'], (width_centered, height_centered))
-                        pygame.display.flip()
-                        pygame.time.delay(3000)
-                    return encounter["choices"][1]["health_change"]
-                if event.key == pygame.K_3:
-                    if isinstance(encounter['reaction_image_3'], pygame.surface.Surface):
-                        surface.blit(encounter['reaction_image_3'], (width_centered, height_centered))
-                        pygame.display.flip()
-                        pygame.time.delay(3000)
-                    return encounter["choices"][2]["health_change"]
+
+                    choice = encounter["choices"][choice_index]
+                    health += choice.get("health_change", 0)
+                    ammo += choice.get("ammo_change", 0)
+                    fuel += choice.get("fuel_change", 0)
+                    supplies += choice.get("supply_change", 0)
+
+                return health, ammo, fuel, supplies
 
 def bad_ending(username): # DYSENTERY
     surface.fill(BLACK)
@@ -112,34 +130,20 @@ def good_ending(username):
     pygame.time.delay(1000)  # DEBUG: LOWER IF NEEDED FOR TESTING
 
 def start_the_game(username):
-    health = 100 # any other variables?
+    health, ammo, fuel, supplies = 100, 50, 20, 10
     encounter_index = 0
 
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        if encounter_index >= len(encounters): # if all encounters are done
-            running = False
-            good_ending(username) if health > 0 else bad_ending()
-            break
-
-        result = encounter_choice(encounters[encounter_index]) # grab result from encounter
-        health += result
-        encounter_index += 1
-
-        if health <= 0: # if you die
-            running = False
+    while encounter_index < len(encounters):
+        health, ammo, fuel, supplies = encounter_choice(encounters[encounter_index], health, ammo, fuel, supplies)
+        if health <= 0 or ammo <= 0 or fuel <= 0 or supplies <= 0:
             bad_ending(username)
-            break
-
+            return
+        encounter_index += 1
         surface.fill(BLACK)
-        health_bar(surface, health)
-        display_text(surface, f"Encounter {encounter_index}/5", 50, 150)
+        resource_display(surface, health, ammo, fuel, supplies)
         pygame.display.flip()
+
+    good_ending(username)
 
 
 def mainmenu():
