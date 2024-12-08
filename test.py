@@ -1,7 +1,11 @@
 import pygame
 import os
 
-os.environ["DISPLAY"] = "host.docker.internal:0"
+os.environ["SDL_VIDEODRIVER"] = "x11"
+os.environ["SDL_OPENGL"] = "0"
+os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
+os.environ["DISPLAY"] = "host.docker.internal:2"  # comment out for running outside docker
+os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 pygame.init()
