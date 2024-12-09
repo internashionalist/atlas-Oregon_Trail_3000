@@ -14,6 +14,7 @@ os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 
 pygame.init() # start 'er up
+clock = pygame.time.Clock()
 username = ''
 
 screen_width, screen_height = 1920, 1080
@@ -26,6 +27,10 @@ ORANGE = (255, 165, 0)
 BLACK = (0, 0, 0)
 
 font = pygame.font.Font(None, 36)
+
+def load_and_scale_image(image_path, screen_width, screen_height):
+    raw_image = pygame.image.load(image_path)
+    return pygame.transform.scale(raw_image, (screen_width, screen_height))
 
 encounters = [
     {
@@ -58,10 +63,10 @@ encounters = [
             "You speed through the ghostly swarm, but manage to grab a stray ammo clip on your way.",
             "You offer the Lost Souls some of your supplies, and they leave you with extra ammo as thanks."
         ],
-        "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
-        "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
-        "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
-        "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
+        "background_image": load_and_scale_image("assets/Lost_Souls.jpg", screen_width, screen_height),
+        "reaction_image_1": load_and_scale_image("assets/Lost_Souls_Fight.jpg", screen_width, screen_height),
+        "reaction_image_2": load_and_scale_image("assets/Lost_Souls_Flee.jpg", screen_width, screen_height),
+        "reaction_image_3": load_and_scale_image("assets/Lost_Souls_Offering.jpg", screen_width, screen_height)
     },
     {
         "text": "A river of molten lava blocks your path, glowing with intense heat.",
@@ -93,10 +98,10 @@ encounters = [
             "You power through the lava, but find a hidden supply stash on the other side.",
             "You find an alternate route, avoiding most of the heat and regaining some health."
         ],
-        "background_image": pygame.image.load("assets/Lava_River.jpg"),
-        "reaction_image_1": pygame.image.load("assets/Lava_River_Bridge.jpg"),
-        "reaction_image_2": pygame.image.load("assets/Lava_River_Through.jpg"),
-        "reaction_image_3": pygame.image.load("assets/Lava_River_Alternate.jpg")
+        "background_image": load_and_scale_image("assets/Lava_River.jpg", screen_width, screen_height),
+        "reaction_image_1": load_and_scale_image("assets/Lava_River_Bridge.jpg", screen_width, screen_height),
+        "reaction_image_2": load_and_scale_image("assets/Lava_River_Through.jpg", screen_width, screen_height),
+        "reaction_image_3": load_and_scale_image("assets/Lava_River_Alternate.jpg", screen_width, screen_height)
     },
     {
         "text": "A pack of ravenous Marauders encircles your rover, demanding food and resources.",
@@ -128,10 +133,10 @@ encounters = [
             "You siphon off your fuel to appease the Marauders, feeling a bit relieved afterward.",
             "You hand over your supplies, but your health improves from avoiding a fight."
         ],
-        "background_image": pygame.image.load("assets/Marauders.jpg"),
-        "reaction_image_1": pygame.image.load("assets/Marauders_Fight.jpg"),
-        "reaction_image_2": pygame.image.load("assets/Marauders_Fuel.jpg"),
-        "reaction_image_3": pygame.image.load("assets/Marauders_Supplies.jpg")
+        "background_image": load_and_scale_image("assets/Marauders.jpg", screen_width, screen_height),
+        "reaction_image_1": load_and_scale_image("assets/Marauders_Fight.jpg", screen_width, screen_height),
+        "reaction_image_2": load_and_scale_image("assets/Marauders_Fuel.jpg", screen_width, screen_height),
+        "reaction_image_3": load_and_scale_image("assets/Marauders_Supplies.jpg", screen_width, screen_height)
     },
     {
         "text": "A hellish storm erupts, forcing you to make a quick decision to survive.",
@@ -163,10 +168,10 @@ encounters = [
         "You floor it through the storm, burning fuel cells against the winds.",
         "You try to circumnavigate the demonic torrent, spending time and supplies."
     ],
-    "background_image": pygame.image.load("assets/Storm.jpg"),
-    "reaction_image_1": pygame.image.load("assets/Storm_Endure.jpg"),
-    "reaction_image_2": pygame.image.load("assets/Storm_Through.jpg"),
-    "reaction_image_3": pygame.image.load("assets/Storm_Around.jpg")
+    "background_image": load_and_scale_image("assets/Storm.jpg", screen_width, screen_height),
+    "reaction_image_1": load_and_scale_image("assets/Storm_Endure.jpg", screen_width, screen_height),
+    "reaction_image_2": load_and_scale_image("assets/Storm_Through.jpg", screen_width, screen_height),
+    "reaction_image_3": load_and_scale_image("assets/Storm_Around.jpg", screen_width, screen_height)
     },
     {
         "text": "An Archdevil wielding a massive flaming sword blocks your path. Its eyes glow with malice as it dares your party to approach.",
@@ -198,10 +203,10 @@ encounters = [
             "You cleverly use your fuel cells to blow the Archdevil back to Hell, restoring your morale.",
             "You offer a valuable tribute, and the Archdevil begrudgingly lets you pass, improving your spirits."
         ],
-        "background_image": pygame.image.load("assets/Archdevil.jpg"),
-        "reaction_image_1": pygame.image.load("assets/Archdevil_Battle.jpg"),
-        "reaction_image_2": pygame.image.load("assets/Archdevil_Cells.jpg"),
-        "reaction_image_3": pygame.image.load("assets/Archdevil_Negotiate.jpg")
+        "background_image": load_and_scale_image("assets/Archdevil.jpg", screen_width, screen_height),
+        "reaction_image_1": load_and_scale_image("assets/Archdevil_Battle.jpg", screen_width, screen_height),
+        "reaction_image_2": load_and_scale_image("assets/Archdevil_Fuel.jpg", screen_width, screen_height),
+        "reaction_image_3": load_and_scale_image("assets/Archdevil_Negotiate.jpg", screen_width, screen_height)
     }
 ]
 
@@ -299,6 +304,7 @@ def start_the_game(username):
             return
         resource_display(surface, health, ammo, fuel, supplies)
         pygame.display.flip()
+        clock.tick(60)
     good_ending(username)
 
 
@@ -314,6 +320,8 @@ def mainmenu():
     mainmenu.add.button('Play', lambda: start_the_game(name_input.get_value()))
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
 
+    clock = pygame.time.Clock()
+
     while True:
         events = pygame.event.get()
         for event in events:
@@ -324,6 +332,7 @@ def mainmenu():
         mainmenu.update(events)
         mainmenu.draw(surface)
         pygame.display.update()
+        clock.tick(60)
 
 if __name__ == '__main__':
     mainmenu()
