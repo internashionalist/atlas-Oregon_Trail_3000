@@ -8,7 +8,7 @@ os.environ["SDL_OPENGL"] = "0"
 os.environ["SDL_VIDEODRIVER"] = "x11"
 os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
 os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+#os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -256,6 +256,25 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     resource_display(surface, health, ammo, fuel, supplies)
     pygame.display.flip()
 
+def intro():
+    """This is the intro after main menu"""
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                running = False
+        surface.fill(BLACK)
+        try:
+            with open("dialogue.txt", "r") as file:
+                content = file.read()
+            display_text(surface, content, screen_width // 2, screen_height // 2)
+        except FileNotFoundError:
+            print("Error: file not found")
+        pygame.display.update()
+        pygame.time.Clock().tick(60)
+
     while True:  # main game loop with choice selection
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -360,6 +379,7 @@ def mainmenu():
     mainmenu.add.label('Welcome to Mars!')
     name_input = mainmenu.add.text_input('Name: ', default='username', maxchar=25)
     mainmenu.add.button('Play', lambda: start_the_game(name_input.get_value()))
+    mainmenu.add.button('Intro', lambda: intro())
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
 
     clock = pygame.time.Clock()
