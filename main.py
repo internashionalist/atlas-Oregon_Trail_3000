@@ -177,25 +177,25 @@ encounters = [
         "text": "An Archdevil wielding a massive flaming sword blocks your path. Its eyes glow with malice as it dares your party to approach.",
         "choices": [
             {
-                "text": "Engage in an epic all-out battle (-50 health, -8 ammo, +10 supplies)",
+                "text": "Engage in an epic all-out battle (-50 health, -8 ammo, -2 fuel)",
                 "health_change": -50,
                 "ammo_change": -8,
-                "fuel_change": 0,
-                "supply_change": +10
+                "fuel_change": -2,
+                "supply_change": 0
             },
             {
-                "text": "Launch fuel cells as explosive countermeasures (-10 fuel, +5 health)",
-                "health_change": +5,
+                "text": "Launch fuel cells as explosive countermeasures (-20 health, -10 fuel)",
+                "health_change": -20,
                 "ammo_change": 0,
                 "fuel_change": -10,
                 "supply_change": 0
             },
             {
-                "text": "Attempt to negotiate with the Archdevil (-10 supplies, +10 health)",
-                "health_change": +10,
+                "text": "Attempt to negotiate with the Archdevil (-5 fuel, -5 supplies)",
+                "health_change": 0,
                 "ammo_change": 0,
-                "fuel_change": 0,
-                "supply_change": -10
+                "fuel_change": -5,
+                "supply_change": -5
             }
         ],
         "flavor_texts": [
@@ -321,7 +321,7 @@ def good_ending(username):
     good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", screen_width, screen_height)
     surface.blit(good_ending_image, (0, 0))
     display_text(surface, "Congratulations!", 100, 300)
-    display_text(surface, f"You, {username}, have reached New Oregon!", 100, 300)
+    display_text(surface, f"You, {username}, have reached New Oregon!", 100, 350)
     pygame.display.flip()
     pygame.time.delay(5000)
 
