@@ -321,7 +321,7 @@ def good_ending(username):
     good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", screen_width, screen_height)
     surface.blit(good_ending_image, (0, 0))
     display_text(surface, "Congratulations!", 100, 300)
-    display_text(surface, "You, {username}, have reached New Oregon!", 100, 300)
+    display_text(surface, f"You, {username}, have reached New Oregon!", 100, 300)
     pygame.display.flip()
     pygame.time.delay(5000)
 
