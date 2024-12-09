@@ -332,7 +332,7 @@ def start_the_game(username):
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(encounter, health, ammo, fuel, supplies)
         if health <= 0:
-            dystentery_ending()
+            dysentery_ending()
             return
         elif ammo <= 0:
             ammo_ending()
