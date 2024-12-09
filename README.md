@@ -52,7 +52,7 @@ cd atlas-T2_Hack_Sprint
 
 ## File Descriptions
 
-  •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.
+  •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.<br>
   •	`assets/`: folder containing all visual assets used in the game (backgrounds, reaction images)
 
 ## Usage
