@@ -8,7 +8,7 @@ os.environ["SDL_OPENGL"] = "0"
 os.environ["SDL_VIDEODRIVER"] = "x11"
 os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
 os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+#os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -209,10 +209,28 @@ encounters = [
         "reaction_image_3": load_and_scale_image("assets/Archdevil_Negotiate.jpg", screen_width, screen_height)
     }
 ]
+def word_wrap(text, max):
+    words = text.split(" ")
+    lines = []
+    current_line = ""
+    for word in words:
+        temp_line = current_line + " " + word if current_line else word
+        width, _ = font.size(temp_line)
+        if width <= max:
+            current_line = temp_line
+        else:
+            lines.append(current_line)
+            current_line = word
+    if current_line:
+        lines.append(current_line)
+    return lines
 
 def display_text(screen, text, x, y):
-    rendered_text = font.render(text, True, GREEN)
-    screen.blit(rendered_text, (x, y))
+    lines = word_wrap(text, screen_width - 50)
+    line_height = font.get_height()
+    for i, line in enumerate(lines):
+        rendered_text = font.render(line, True, GREEN)
+        screen.blit(rendered_text, (x, y + i * line_height))
 
 def draw_resource_bar(screen, x, y, width, height, current_value, max_value, color):
     pygame.draw.rect(screen, RED, (x, y, width, height))
@@ -237,6 +255,25 @@ def resource_display(screen, health, ammo, fuel, supplies):
 def scale_image(image, screen_width, screen_height):
     # scales an image to the current screen height
     return pygame.transform.scale(image, (screen_width, screen_height))
+
+def intro():
+    """This is the intro after main menu"""
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                running = False
+        surface.fill(BLACK)
+        try:
+            with open("dialogue.txt", "r") as file:
+                content = file.read()
+            display_text(surface, content, 0, 0)
+        except FileNotFoundError:
+            print("Error: file not found")
+        pygame.display.update()
+        pygame.time.Clock().tick(60)
 
 def encounter_choice(encounter, health, ammo, fuel, supplies):
     surface.fill(BLACK)
@@ -326,13 +363,14 @@ def good_ending(username):
     pygame.time.delay(5000)
 
 def start_the_game(username):
+    intro()
     health, ammo, fuel, supplies = 100, 50, 20, 10
     encounter_index = 0
 
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(encounter, health, ammo, fuel, supplies)
         if health <= 0:
-            dysentery_ending()
+            dysentery_ending(username)
             return
         elif ammo <= 0:
             ammo_ending()
@@ -360,6 +398,7 @@ def mainmenu():
     mainmenu.add.label('Welcome to Mars!')
     name_input = mainmenu.add.text_input('Name: ', default='username', maxchar=25)
     mainmenu.add.button('Play', lambda: start_the_game(name_input.get_value()))
+    mainmenu.add.button('Intro', lambda: intro())
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
 
     clock = pygame.time.Clock()
