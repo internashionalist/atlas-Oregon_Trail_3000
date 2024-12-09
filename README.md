@@ -33,10 +33,10 @@ Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape
 
 This project is developed and tested in:
 
-  •	**Operating System**: Ubuntu 22.04 (Dockerized Environment)
-  •	**Python Version**: Python 3.10
-  •	**Dependencies**:
-    - `pygame` (2.6.1+)
+  •	**Operating System**: Ubuntu 22.04 (Dockerized Environment)<br>
+  •	**Python Version**: Python 3.10<br>
+  •	**Dependencies**:<br>
+    - `pygame` (2.6.1+)<br>
     - `pygame-menu` (4.4.8+)
 
 ---
