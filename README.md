@@ -8,90 +8,105 @@ Tsim Muaj Yang <tyang4204@gmail.com>
 
 
 
-# Oregon Trail 3000: An Adventure Through DOOM
+# Oregon Trail 3000
 
-Oregon Trail 3000 is a thrilling survival and resource management game set on Mars. Inspired by the classic Oregon Trail and the immortal DOOM, this game challenges you to traverse a hostile Martian environment while managing limited resources, encountering demonic challenges, and making life-or-death decisions. Can you survive and reach safety, or will you succumb to hellish dysentery?
+Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape. Inspired by the classic Oregon Trail, players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey across the hostile Martian terrain.
 
 ---
 
 ## Table of Contents
 
-1. [Features](#features)
-2. [How to Play](#how-to-play)
-3. [Gameplay](#gameplay)
-4. [Resources](#resources)
-5. [Key Features](#key-features)
-6. [System Requirements](#system-requirements)
-7. [Installation](#installation)
-8. [Running the Game](#running-the-game)
-9. [Credits](#credits)
+- [Environment](#environment)
+- [Installation](#installation)
+- [File Descriptions](#file-descriptions)
+- [Usage](#usage)
+- [Gameplay](#gameplay)
+- [Encounters and Resources](#encounters-and-resources)
+- [Key Features](#key-features)
+- [Bugs](#bugs)
+- [Authors](#authors)
+- [License](#license)
 
 ---
 
-## Features
+## Environment
 
-- **Dynamic Resource Management**: Keep track of your health, ammo, fuel, and supplies to stay alive.
-- **Engaging Encounters**: Choose your fate in unique, story-driven challenges.
-- **Stunning Visuals**: Encounter-specific background images immerse you in the Martian landscape.
-- **Multiple Outcomes**: Every decision changes your resources, influencing your journey's success or failure.
+This project is developed and tested in:
 
----
-
-## How to Play
-
-1. **Start the Game**: Launch the game and enter your name to begin your journey.
-2. **Make Decisions**: Each encounter offers three choices. Choose wisely to manage your resources.
-3. **Monitor Resources**: Keep track of your health, ammo, fuel, and supplies using the resource bars.
-4. **Survive the Journey**: If any resource runs out, you lose. Manage wisely to reach safety!
-
----
-
-## Gameplay
-
-The game progresses through a series of encounters. Each encounter presents:
-- A **description** of the challenge.
-- Three **choices** with varying resource costs and potential rewards.
-- **Visual feedback**, including a background image and reaction visuals based on your choice.
-
-If any resource drops to zero, the game ends. Make strategic decisions to keep your resources balanced and survive until the end.
-
----
-
-## Resources
-
-- **Health**: Decreases from combat and environmental hazards. Lose all health, and you die.
-- **Ammo**: Needed for combat. Running out leaves you vulnerable.
-- **Fuel**: Powers your rover. Without fuel, you’re stranded.
-- **Supplies**: Essential for survival. Running out leaves you unable to negotiate or recover.
-
----
-
-## Key Features
-
-- **Strategic Decision-Making**: Each choice impacts your resources, creating a balance of risk and reward.
-- **Immersive Visuals**: High-quality images provide a rich, atmospheric experience.
-- **Challenging Boss Fights**: Test your skills against powerful enemies.
-- **Dynamic Feedback**: Get immediate visual and textual responses to your decisions.
-
----
-
-## System Requirements
-
-- **Python**: Version 3.10 or higher.
-- **Dependencies**: `pygame` (2.6.1+), `pygame-menu` (4.4.8+).
+  •	**Operating System**: Ubuntu 22.04 (Dockerized Environment)
+  •	**Python Version**: Python 3.10
+  •	**Dependencies**:
+    - `pygame` (2.6.1+)
+    - `pygame-menu` (4.4.8+)
 
 ---
 
 ## Installation
 
-### Clone and Navigate to the Game Repository
+### Clone and Navigate to Game Repository
+
 ```bash
 git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
 cd atlas-T2_Hack_Sprint
 ```
 
-### Running the Game
+## File Descriptions
+
+  •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.
+  •	`assets/`: folder containing all visual assets used in the game (backgrounds, reaction images)
+
+## Usage
+
+To run the game, use the following command:
+
 ```bash
 python3 main.py
 ```
 
+## Gameplay
+
+The game revolves around managing four key resources: Health, Ammo, Fuel, and Supplies. Players are presented with a series of encounters, each requiring strategic decision-making. Poor resource management or bad decisions can lead to game-ending situations.
+
+### How to Play
+
+1.	Launch the game using the python3 main.py command.
+2.	Follow on-screen prompts to make choices during encounters.
+3.	Monitor your resources displayed at the top of the screen.
+4.	Survive through all encounters to win the game.
+
+## Encounters and Resources
+
+Players will face various encounters throughout the game, including:
+	•	Lost Souls: Fight or flee from a fiery swarm.
+	•	Lava River: Cross molten terrain with creativity and resilience.
+	•	Marauders: Defend your supplies from raiders or barter for safety.
+	•	Hellish Storm: Navigate treacherous weather with resourcefulness.
+	•	Archdevil Boss Fight: Test your limits against a powerful enemy.
+
+### Resources
+
+	•	Health: Represents the player’s survival. If it drops to zero, the game ends.
+	•	Ammo: Used in combat encounters. Running out limits combat choices.
+	•	Fuel: Essential for advancing through encounters.
+	•	Supplies: A general resource for various encounters and survival needs.
+
+## Key Features
+
+	•	Dynamic encounter system with multiple choices and outcomes.
+	•	Resource management with visible progress bars.
+	•	High-quality visual assets for immersive gameplay.
+	•	Boss encounters with unique challenges.
+
+## Bugs
+
+No known bugs at this time.
+
+## Authors
+
+Stephen Newby <https://github.com/TheSnewby/><br>
+Nash Thames <https://github.com/internashionalist><br>
+Tsim Muaj Yang <tyang4204@gmail.com>
+
+## License
+
+This project is released under the Public Domain. No copyright protection.
