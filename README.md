@@ -105,7 +105,7 @@ No known bugs at this time.
 
 Stephen Newby <https://github.com/TheSnewby/><br>
 Nash Thames <https://github.com/internashionalist><br>
-Tsim Muaj Yang <tyang4204@gmail.com>
+Tsim Muaj Yang <https://github.com/Jimwall0>
 
 ## License
 
