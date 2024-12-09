@@ -281,17 +281,49 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
 
                 return health, ammo, fuel, supplies
 
-def bad_ending(username): # DYSENTERY
+def dysentery_ending(username): # DYSENTERY
     surface.fill(BLACK)
+    dysentery_image = load_and_scale_image("assets/Dysentery.jpg", screen_width, screen_height)
+    surface.blit(dysentery_image, (0, 0))
     display_text(surface, f"You, {username} have died of dysentery.", 100, 300)
     pygame.display.flip()
-    pygame.time.delay(5000) # is five seconds enough?
+    pygame.time.delay(5000)
+
+def ammo_ending():
+    surface.fill(BLACK)
+    ammo_image = load_and_scale_image("assets/Ammo_Ending.jpg", screen_width, screen_height)
+    surface.blit(ammo_image, (0, 0))
+    display_text(surface, "Overwhelmed and defenseless...", 100, 300)
+    display_text(surface, "Without ammo, you were unable to fend off the dangers of Mars.", 100, 350)
+    pygame.display.flip()
+    pygame.time.delay(5000)
+
+def fuel_ending():
+    surface.fill(BLACK)
+    fuel_image = load_and_scale_image("assets/Fuel_Ending.jpg", screen_width, screen_height)
+    surface.blit(fuel_image, (0, 0))
+    display_text(surface, "Stranded and without options...", 100, 300)
+    display_text(surface, "Out of fuel, you were unable to continue your journey.", 100, 350)
+    pygame.display.flip()
+    pygame.time.delay(5000)
+
+def supplies_ending():
+    surface.fill(BLACK)
+    supplies_image = load_and_scale_image("assets/Supplies_Ending.jpg", screen_width, screen_height)
+    surface.blit(supplies_image, (0, 0))
+    display_text(surface, "Starving and desperate...", 100, 300)
+    display_text(surface, "Without supplies, survival was impossible.", 100, 350)
+    pygame.display.flip()
+    pygame.time.delay(5000)
 
 def good_ending(username):
-    surface.fill((0, 0, 0))
-    display_text(surface, f"You, {username}, have reached Oregon!", 100, 300)
+    surface.fill(BLACK)
+    good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", screen_width, screen_height)
+    surface.blit(good_ending_image, (0, 0))
+    display_text(surface, "Congratulations!", 100, 300)
+    display_text(surface, "You, {username}, have reached New Oregon!", 100, 300)
     pygame.display.flip()
-    pygame.time.delay(5000)  # DEBUG: LOWER IF NEEDED FOR TESTING
+    pygame.time.delay(5000)
 
 def start_the_game(username):
     health, ammo, fuel, supplies = 100, 50, 20, 10
@@ -299,9 +331,19 @@ def start_the_game(username):
 
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(encounter, health, ammo, fuel, supplies)
-        if health <= 0 or ammo <= 0 or fuel <= 0 or supplies <= 0:
-            bad_ending(username)
+        if health <= 0:
+            dystentery_ending()
             return
+        elif ammo <= 0:
+            ammo_ending()
+            return
+        elif fuel <= 0:
+            fuel_ending()
+            return
+        elif supplies <= 0:
+            supplies_ending()
+            return
+
         resource_display(surface, health, ammo, fuel, supplies)
         pygame.display.flip()
         clock.tick(60)
