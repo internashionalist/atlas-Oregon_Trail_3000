@@ -4,11 +4,11 @@ from pygame_menu import themes
 import sys
 import os
 
-os.environ["SDL_VIDEODRIVER"] = "x11"
 os.environ["SDL_OPENGL"] = "0"
+os.environ["SDL_VIDEODRIVER"] = "x11"
 os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
 os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-os.environ["DISPLAY"] = "host.docker.internal:2"  # comment out for running outside docker
+os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
 os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -29,76 +29,180 @@ font = pygame.font.Font(None, 36)
 
 encounters = [
     {
-        "text": "A swarm of Lost Souls surrounds your vehicle, screeching and blazing with fiery auras.",
+        "text": "A swarm of Lost Souls surrounds your rover, screeching and blazing with fiery auras.",
         "choices": [
-        {
-            "text": "Fight with your handy shotgun (-15 health, -3 ammo, +3 supplies)",
-            "health_change": -15,
-            "ammo_change": -3,
-            "fuel_change": 0,
-            "supply_change": +3
-        },
-        {
-            "text": "Step on the gas (-2 fuel, -5 health)",
-            "health_change": -5,
-            "ammo_change": 0,
-            "fuel_change": -2,
-            "supply_change": 0
-        },
-        {
-            "text": "Make an offering to the lost (-2 supplies, +1 ammo)",
-            "health_change": 0,
-            "ammo_change": +1,
-            "fuel_change": 0,
-            "supply_change": -2
-        }
-    ],
-    "flavor_texts": [
-        "You blast the Lost Souls away, but at the cost of precious ammo and health.",
-        "You speed through the ghostly swarm, but not without a few scratches and some lost fuel.",
-        "You offer the Lost Souls some of your supplies, and they let you pass without incident."
-    ],
-    "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
-    "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
-    "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
-    "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
+            {
+                "text": "Fight with your handy shotgun (-15 health, -3 ammo, +3 supplies)",
+                "health_change": -15,
+                "ammo_change": -3,
+                "fuel_change": 0,
+                "supply_change": +3
+            },
+            {
+                "text": "Step on the gas (-5 health, -2 fuel, +1 ammo)",
+                "health_change": -5,
+                "ammo_change": +1,
+                "fuel_change": -2,
+                "supply_change": 0
+            },
+            {
+                "text": "Make an offering to the lost (-2 supplies, +2 ammo)",
+                "health_change": 0,
+                "ammo_change": +2,
+                "fuel_change": 0,
+                "supply_change": -2
+            }
+        ],
+        "flavor_texts": [
+            "You blast the Lost Souls away, but at the cost of precious ammo and health.",
+            "You speed through the ghostly swarm, but manage to grab a stray ammo clip on your way.",
+            "You offer the Lost Souls some of your supplies, and they leave you with extra ammo as thanks."
+        ],
+        "background_image": pygame.image.load("assets/Lost_Souls.jpg"),
+        "reaction_image_1": pygame.image.load("assets/Lost_Souls_Fight.jpg"),
+        "reaction_image_2": pygame.image.load("assets/Lost_Souls_Flee.jpg"),
+        "reaction_image_3": pygame.image.load("assets/Lost_Souls_Offering.jpg")
     },
     {
         "text": "A river of molten lava blocks your path, glowing with intense heat.",
         "choices": [
+            {
+                "text": "Build a makeshift bridge and cross safely (-10 health, -4 supplies, +5 ammo)",
+                "health_change": -10,
+                "ammo_change": +5,
+                "fuel_change": 0,
+                "supply_change": -4
+            },
+            {
+                "text": "Endure the searing heat and power through the lava (-30 health, -2 fuel, +2 supplies)",
+                "health_change": -30,
+                "ammo_change": 0,
+                "fuel_change": -2,
+                "supply_change": +2
+            },
+            {
+                "text": "Find an alternate route (-4 fuel, -2 supplies, +3 health)",
+                "health_change": +3,
+                "ammo_change": 0,
+                "fuel_change": -4,
+                "supply_change": -2
+            }
+        ],
+        "flavor_texts": [
+            "You build a bridge out of scrap metal and cross safely, scavenging some ammo along the way.",
+            "You power through the lava, but find a hidden supply stash on the other side.",
+            "You find an alternate route, avoiding most of the heat and regaining some health."
+        ],
+        "background_image": pygame.image.load("assets/Lava_River.jpg"),
+        "reaction_image_1": pygame.image.load("assets/Lava_River_Bridge.jpg"),
+        "reaction_image_2": pygame.image.load("assets/Lava_River_Through.jpg"),
+        "reaction_image_3": pygame.image.load("assets/Lava_River_Alternate.jpg")
+    },
+    {
+        "text": "A pack of ravenous Marauders encircles your rover, demanding food and resources.",
+        "choices": [
+            {
+                "text": "Fight them off in a hail of bullets (-20 health, -5 ammo, +8 supplies)",
+                "health_change": -20,
+                "ammo_change": -5,
+                "fuel_change": 0,
+                "supply_change": +8
+            },
+            {
+                "text": "Give them some fuel to avoid confrontation (-5 fuel, +3 health)",
+                "health_change": +3,
+                "ammo_change": 0,
+                "fuel_change": -5,
+                "supply_change": 0
+            },
+            {
+                "text": "Surrender your supplies to buy your safety (+10 health, -5 supplies)",
+                "health_change": +10,
+                "ammo_change": 0,
+                "fuel_change": 0,
+                "supply_change": -5
+            }
+        ],
+        "flavor_texts": [
+            "You engage in a brutal fight, taking serious damage but gaining valuable supplies.",
+            "You siphon off your fuel to appease the Marauders, feeling a bit relieved afterward.",
+            "You hand over your supplies, but your health improves from avoiding a fight."
+        ],
+        "background_image": pygame.image.load("assets/Marauders.jpg"),
+        "reaction_image_1": pygame.image.load("assets/Marauders_Fight.jpg"),
+        "reaction_image_2": pygame.image.load("assets/Marauders_Fuel.jpg"),
+        "reaction_image_3": pygame.image.load("assets/Marauders_Supplies.jpg")
+    },
+    {
+        "text": "A hellish storm erupts, forcing you to make a quick decision to survive.",
+        "choices": [
         {
-            "text": "Build a makeshift bridge (-10 health, -4 supplies)",
-            "health_change": -10,
+            "text": "Hunker down and endure the tempest",
+            "health_change": -15,
             "ammo_change": 0,
             "fuel_change": 0,
-            "supply_change": -4
+            "supply_change": -3
         },
         {
-            "text": "Endure the searing heat and power through (-30 health, -2 fuel)",
-            "health_change": -30,
+            "text": "Power through at full throttle",
+            "health_change": -10,
             "ammo_change": 0,
-            "fuel_change": -2,
+            "fuel_change": -6,
             "supply_change": 0
         },
         {
-            "text": "Find an alternate route (-4 fuel, -2 supplies)",
+            "text": "Attempt to go around the storm",
             "health_change": 0,
             "ammo_change": 0,
-            "fuel_change": -4,
-            "supply_change": -2
+            "fuel_change": 3,
+            "supply_change": 2
         }
     ],
     "flavor_texts": [
-        "You build a bridge out of scrap metal and cross safely, but not without a few burns and bruises.",
-        "You power through the lava, but not without some serious burns and health loss.",
-        "You find an alternate route, but not without losing some fuel and supplies."
+        "You take shelter for the duration, using precious supplies and sustaining injuries.",
+        "You floor it through the storm, burning fuel cells against the winds.",
+        "You try to circumnavigate the demonic torrent, spending time and supplies."
     ],
-    "background_image": pygame.image.load("assets/Lava_River.jpg"),
-    "reaction_image_1": pygame.image.load("assets/Lava_River_Bridge.jpg"),
-    "reaction_image_2": pygame.image.load("assets/Lava_River_Through.jpg"),
-    "reaction_image_3": pygame.image.load("assets/Lava_River_Alternate.jpg")
+    "background_image": pygame.image.load("assets/Storm.jpg"),
+    "reaction_image_1": pygame.image.load("assets/Storm_Endure.jpg"),
+    "reaction_image_2": pygame.image.load("assets/Storm_Through.jpg"),
+    "reaction_image_3": pygame.image.load("assets/Storm_Around.jpg")
     },
-    # more encounters
+    {
+        "text": "An Archdevil wielding a massive flaming sword blocks your path. Its eyes glow with malice as it dares your party to approach.",
+        "choices": [
+            {
+                "text": "Engage in an epic all-out battle (-50 health, -8 ammo, +10 supplies)",
+                "health_change": -50,
+                "ammo_change": -8,
+                "fuel_change": 0,
+                "supply_change": +10
+            },
+            {
+                "text": "Launch fuel cells as explosive countermeasures (-10 fuel, +5 health)",
+                "health_change": +5,
+                "ammo_change": 0,
+                "fuel_change": -10,
+                "supply_change": 0
+            },
+            {
+                "text": "Attempt to negotiate with the Archdevil (-10 supplies, +10 health)",
+                "health_change": +10,
+                "ammo_change": 0,
+                "fuel_change": 0,
+                "supply_change": -10
+            }
+        ],
+        "flavor_texts": [
+            "You unleash everything you have against the Archdevil, suffering terrible wounds but collecting a hoard of supplies.",
+            "You cleverly use your fuel cells to blow the Archdevil back to Hell, restoring your morale.",
+            "You offer a valuable tribute, and the Archdevil begrudgingly lets you pass, improving your spirits."
+        ],
+        "background_image": pygame.image.load("assets/Archdevil.jpg"),
+        "reaction_image_1": pygame.image.load("assets/Archdevil_Battle.jpg"),
+        "reaction_image_2": pygame.image.load("assets/Archdevil_Cells.jpg"),
+        "reaction_image_3": pygame.image.load("assets/Archdevil_Negotiate.jpg")
+    }
 ]
 
 def display_text(screen, text, x, y):
