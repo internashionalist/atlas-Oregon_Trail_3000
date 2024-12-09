@@ -363,6 +363,7 @@ def good_ending(username):
     pygame.time.delay(5000)
 
 def start_the_game(username):
+    intro()
     health, ammo, fuel, supplies = 100, 50, 20, 10
     encounter_index = 0
 
