@@ -284,7 +284,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     text_background_rect = pygame.Rect(50, 250, screen_width - 100, 300)
     pygame.draw.rect(surface, BLACK, text_background_rect)
 
-    display_text(surface, encounter["text"] + '\n', 100, 300)
+    display_text(surface, encounter["text"], 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
         display_text(surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50)
