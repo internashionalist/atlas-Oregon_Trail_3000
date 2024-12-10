@@ -269,7 +269,7 @@ def intro():
         try:
             with open("dialogue.txt", "r") as file:
                 content = file.read()
-            display_text(surface, content, 0, 0)
+            display_text(surface, content, 400, 700)
         except FileNotFoundError:
             print("Error: file not found")
         pygame.display.update()
