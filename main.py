@@ -252,9 +252,23 @@ def resource_display(screen, health, ammo, fuel, supplies):
     draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, GREEN)
     display_text(screen, "Supplies", 360, 200)
 
-def scale_image(image, screen_width, screen_height):
-    # scales an image to the current screen height
-    return pygame.transform.scale(image, (screen_width, screen_height))
+def fade_in(surface, color, duration=1000):
+    fade_surface = pygame.Surface(surface.get_size())
+    fade_surface.fill(color)
+    for alpha in range(0, 255):
+        fade_surface.set_alpha(alpha)
+        surface.blit(fade_surface, (0, 0))
+        pygame.display.update()
+        pygame.time.delay(duration // 255)
+
+def fade_out(surface, color, duration=1000):
+    fade_surface = pygame.Surface(surface.get_size())
+    fade_surface.fill(color)
+    for alpha in range(255, -1, -1):
+        fade_surface.set_alpha(alpha)
+        surface.blit(fade_surface, (0, 0))
+        pygame.display.update()
+        pygame.time.delay(duration // 255)
 
 def intro():
     """This is the intro after main menu"""
@@ -276,9 +290,10 @@ def intro():
         pygame.time.Clock().tick(60)
 
 def encounter_choice(encounter, health, ammo, fuel, supplies):
+    fade_in(surface, BLACK, 1000)
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
-    resized_encounter_image = scale_image(encounter['background_image'], current_screen_width, current_screen_height)
+    resized_encounter_image = load_and_scale_image(encounter['background_image'], current_screen_width, current_screen_height)
     surface.blit(resized_encounter_image, (0, 0))
 
     text_background_rect = pygame.Rect(50, 250, screen_width - 100, 300)
@@ -315,6 +330,8 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 ammo += choice.get("ammo_change", 0)
                 fuel += choice.get("fuel_change", 0)
                 supplies += choice.get("supply_change", 0)
+
+                fade_out(surface, BLACK, 1000)
 
                 return health, ammo, fuel, supplies
 
