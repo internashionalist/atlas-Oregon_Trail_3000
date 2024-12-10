@@ -63,7 +63,7 @@ encounters = [
             "You speed through the ghostly swarm, but manage to grab a stray ammo clip on your way.",
             "You offer the Lost Souls some of your supplies, and they leave you with extra ammo as thanks."
         ],
-        "background_image": load_and_scale_image("assets/Lost_Souls.jpg", screen_width, screen_height),
+        "background_image": "assets/Lost_Souls.jpg",
         "reaction_image_1": load_and_scale_image("assets/Lost_Souls_Fight.jpg", screen_width, screen_height),
         "reaction_image_2": load_and_scale_image("assets/Lost_Souls_Flee.jpg", screen_width, screen_height),
         "reaction_image_3": load_and_scale_image("assets/Lost_Souls_Offering.jpg", screen_width, screen_height)
@@ -98,7 +98,7 @@ encounters = [
             "You power through the lava, but find a hidden supply stash on the other side.",
             "You find an alternate route, avoiding most of the heat and regaining some health."
         ],
-        "background_image": load_and_scale_image("assets/Lava_River.jpg", screen_width, screen_height),
+        "background_image": "assets/Lava_River.jpg",
         "reaction_image_1": load_and_scale_image("assets/Lava_River_Bridge.jpg", screen_width, screen_height),
         "reaction_image_2": load_and_scale_image("assets/Lava_River_Through.jpg", screen_width, screen_height),
         "reaction_image_3": load_and_scale_image("assets/Lava_River_Alternate.jpg", screen_width, screen_height)
@@ -133,7 +133,7 @@ encounters = [
             "You siphon off your fuel to appease the Marauders, feeling a bit relieved afterward.",
             "You hand over your supplies, but your health improves from avoiding a fight."
         ],
-        "background_image": load_and_scale_image("assets/Marauders.jpg", screen_width, screen_height),
+        "background_image": "assets/Marauders.jpg",
         "reaction_image_1": load_and_scale_image("assets/Marauders_Fight.jpg", screen_width, screen_height),
         "reaction_image_2": load_and_scale_image("assets/Marauders_Fuel.jpg", screen_width, screen_height),
         "reaction_image_3": load_and_scale_image("assets/Marauders_Supplies.jpg", screen_width, screen_height)
@@ -168,7 +168,7 @@ encounters = [
         "You floor it through the storm, burning fuel cells against the winds.",
         "You try to circumnavigate the demonic torrent, spending time and supplies."
     ],
-    "background_image": load_and_scale_image("assets/Storm.jpg", screen_width, screen_height),
+    "background_image": "assets/Storm.jpg",
     "reaction_image_1": load_and_scale_image("assets/Storm_Endure.jpg", screen_width, screen_height),
     "reaction_image_2": load_and_scale_image("assets/Storm_Through.jpg", screen_width, screen_height),
     "reaction_image_3": load_and_scale_image("assets/Storm_Around.jpg", screen_width, screen_height)
@@ -203,7 +203,7 @@ encounters = [
             "You cleverly use your fuel cells to blow the Archdevil back to Hell, restoring your morale.",
             "You offer a valuable tribute, and the Archdevil begrudgingly lets you pass, improving your spirits."
         ],
-        "background_image": load_and_scale_image("assets/Archdevil.jpg", screen_width, screen_height),
+        "background_image": "assets/Archdevil.jpg",
         "reaction_image_1": load_and_scale_image("assets/Archdevil_Battle.jpg", screen_width, screen_height),
         "reaction_image_2": load_and_scale_image("assets/Archdevil_Fuel.jpg", screen_width, screen_height),
         "reaction_image_3": load_and_scale_image("assets/Archdevil_Negotiate.jpg", screen_width, screen_height)
