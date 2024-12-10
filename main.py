@@ -296,9 +296,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     resized_encounter_image = load_and_scale_image(encounter['background_image'], current_screen_width, current_screen_height)
     surface.blit(resized_encounter_image, (0, 0))
 
-    text_background_rect = pygame.Rect(50, 250, screen_width - 100, 300)
-    pygame.draw.rect(surface, BLACK, text_background_rect)
-
+    text_background_surface = pygame.Surface((screen_width - 100, 200), pygame.SRCALPHA)
+    text_background_surface.fill((0, 0, 0, 128))
+    surface.blit(text_background_surface, (50, 250))
+    
     display_text(surface, encounter["text"], 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
