@@ -328,8 +328,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 flavor_text = encounter["flavor_texts"][choice_index]
 
                 surface.blit(load_and_scale_image(reaction_image, current_screen_width, current_screen_height), (0, 0))
-                pygame.draw.rect(surface, BLACK, pygame.Rect(50, screen_height - 150, screen_width - 100, 100))
-                display_text(surface, flavor_text, 60, screen_height - 120)
+                flavor_text_background_surface = pygame.Surface((screen_width - 100, 50), pygame.SRCALPHA)
+                flavor_text_background_surface.fill((0, 0, 0, 128))
+                surface.blit(flavor_text_background_surface, (50, current_screen_height - 250))
+                display_text(surface, flavor_text, 60, current_screen_height - 240)
                 resource_display(surface, health, ammo, fuel, supplies)
                 pygame.display.flip()
                 pygame.time.delay(3000)
