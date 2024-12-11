@@ -75,17 +75,17 @@ Players will face various threats to their survival throughout the game, includi
 
 ### Resources
 
-•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.
-•	**Ammo**: Used in combat encounters to protect the party from danger.
-•	**Fuel**: Essential for advancing through encounters in your vehicle.
+•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.<br>
+•	**Ammo**: Used in combat encounters to protect the party from danger.<br>
+•	**Fuel**: Essential for advancing through encounters in your vehicle.<br>
 •	**Supplies**: A general resource for various encounters and survival needs.
 
 ## Key Features
 
-•	Dynamic encounter system with multiple choices and outcomes
-•	Resource management with visible progress bars
-•	High-quality visual assets for immersive gameplay
-•	Boss encounters with unique challenges
+•	Dynamic encounter system with multiple choices and outcomes<br>
+•	Resource management with visible progress bars<br>
+•	High-quality visual assets for immersive gameplay<br>
+•	Boss encounters with unique challenges<br>
 •	Exciting Midi Audio
 
 ## Bugs
