@@ -1,17 +1,6 @@
-# atlas-T2_Hack_Sprint
-### Desc
-On a distant planet lays a group. They are immigrants to a new land not of Earth. Their goal is to arrive at a new spot of land and terraform the space to be inhabitable. You job is to oversee these immigrants to their new home. There is a twist though. The local TSA has been less than kind to people in general much less immigrants. The TSA isn't the only thing on Mars to keep you company. Try to see them through thick and thin whether them natural or unatural. Space Dysentry is a really big problem too.
-### Authors
-Stephen Newby <https://github.com/TheSnewby/><br>
-Nash Thames <https://github.com/internashionalist><br>
-Tsim Muaj Yang <tyang4204@gmail.com>
-
-
-
 # Oregon Trail 3000
 
-Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape. Inspired by the classic Oregon Trail, players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey across the hostile Martian terrain.
-
+Oregon Trail 3000 is a survival game set in the harsh and unforgiving Martian landscape. Inspired by the classic Oregon Trail, players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
 ---
 
 ## Table of Contents
@@ -54,7 +43,7 @@ cd atlas-T2_Hack_Sprint
 ## File Descriptions
 
   •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.<br>
-  •	`assets/`: folder containing all visual and audio assets used in the game (backgrounds, reaction images)
+  •	`assets/`: folder containing all visual and audio assets used in the game
 
 ## Usage
 
@@ -86,18 +75,19 @@ Players will face various encounters throughout the game, including:
 
 ### Resources
 
-	•	Health: Represents the player’s survival. If it drops to zero, the game ends.
-	•	Ammo: Used in combat encounters. Running out limits combat choices.
-	•	Fuel: Essential for advancing through encounters.
+	•	Health: Represents the party’s survival. If it drops to zero, the game ends.
+	•	Ammo: Used in combat encounters to protect the party from danger.
+	•	Fuel: Essential for advancing through encounters in your vehicle.
 	•	Supplies: A general resource for various encounters and survival needs.
 
 ## Key Features
 
-	•	Dynamic encounter system with multiple choices and outcomes.
-	•	Resource management with visible progress bars.
-	•	High-quality visual assets for immersive gameplay.
-	•	Boss encounters with unique challenges.
-	•	Exciting Midi Audio.
+	•	Dynamic encounter system with multiple choices and outcomes
+	•	Resource management with visible progress bars
+	•	High-quality visual assets for immersive gameplay
+	•	Boss encounters with unique challenges
+	•	Exciting Midi Audio
+
 ## Bugs
 
 Audio is low quality.
