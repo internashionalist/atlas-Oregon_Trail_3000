@@ -64,9 +64,9 @@ encounters = [
             "You offer the Lost Souls some of your supplies, and they leave you with extra ammo as thanks."
         ],
         "background_image": "assets/Lost_Souls.jpg",
-        "reaction_image_1": load_and_scale_image("assets/Lost_Souls_Fight.jpg", screen_width, screen_height),
-        "reaction_image_2": load_and_scale_image("assets/Lost_Souls_Flee.jpg", screen_width, screen_height),
-        "reaction_image_3": load_and_scale_image("assets/Lost_Souls_Offering.jpg", screen_width, screen_height)
+        "reaction_image_1": "assets/Lost_Souls_Fight.jpg",
+        "reaction_image_2": "assets/Lost_Souls_Flee.jpg",
+        "reaction_image_3": "assets/Lost_Souls_Offering.jpg"
     },
     {
         "text": "A river of molten lava blocks your path, glowing with intense heat.",
@@ -99,9 +99,9 @@ encounters = [
             "You find an alternate route, avoiding most of the heat and regaining some health."
         ],
         "background_image": "assets/Lava_River.jpg",
-        "reaction_image_1": load_and_scale_image("assets/Lava_River_Bridge.jpg", screen_width, screen_height),
-        "reaction_image_2": load_and_scale_image("assets/Lava_River_Through.jpg", screen_width, screen_height),
-        "reaction_image_3": load_and_scale_image("assets/Lava_River_Alternate.jpg", screen_width, screen_height)
+        "reaction_image_1": "assets/Lava_River_Bridge.jpg",
+        "reaction_image_2": "assets/Lava_River_Through.jpg",
+        "reaction_image_3": "assets/Lava_River_Alternate.jpg"
     },
     {
         "text": "A pack of ravenous Marauders encircles your rover, demanding food and resources.",
@@ -134,9 +134,9 @@ encounters = [
             "You hand over your supplies, but your health improves from avoiding a fight."
         ],
         "background_image": "assets/Marauders.jpg",
-        "reaction_image_1": load_and_scale_image("assets/Marauders_Fight.jpg", screen_width, screen_height),
-        "reaction_image_2": load_and_scale_image("assets/Marauders_Fuel.jpg", screen_width, screen_height),
-        "reaction_image_3": load_and_scale_image("assets/Marauders_Supplies.jpg", screen_width, screen_height)
+        "reaction_image_1": "assets/Marauders_Fight.jpg",
+        "reaction_image_2": "assets/Marauders_Fuel.jpg",
+        "reaction_image_3": "assets/Marauders_Supplies.jpg"
     },
     {
         "text": "A hellish storm erupts, forcing you to make a quick decision to survive.",
@@ -169,9 +169,9 @@ encounters = [
         "You try to circumnavigate the demonic torrent, spending time and supplies."
     ],
     "background_image": "assets/Storm.jpg",
-    "reaction_image_1": load_and_scale_image("assets/Storm_Endure.jpg", screen_width, screen_height),
-    "reaction_image_2": load_and_scale_image("assets/Storm_Through.jpg", screen_width, screen_height),
-    "reaction_image_3": load_and_scale_image("assets/Storm_Around.jpg", screen_width, screen_height)
+    "reaction_image_1": "assets/Storm_Endure.jpg",
+    "reaction_image_2": "assets/Storm_Through.jpg",
+    "reaction_image_3": "assets/Storm_Around.jpg"
     },
     {
         "text": "An Archdevil wielding a massive flaming sword blocks your path. Its eyes glow with malice as it dares your party to approach.",
@@ -204,13 +204,13 @@ encounters = [
             "You offer a valuable tribute, and the Archdevil begrudgingly lets you pass, improving your spirits."
         ],
         "background_image": "assets/Archdevil.jpg",
-        "reaction_image_1": load_and_scale_image("assets/Archdevil_Battle.jpg", screen_width, screen_height),
-        "reaction_image_2": load_and_scale_image("assets/Archdevil_Fuel.jpg", screen_width, screen_height),
-        "reaction_image_3": load_and_scale_image("assets/Archdevil_Negotiate.jpg", screen_width, screen_height)
+        "reaction_image_1": "assets/Archdevil_Battle.jpg",
+        "reaction_image_2": "assets/Archdevil_Fuel.jpg",
+        "reaction_image_3": "assets/Archdevil_Negotiate.jpg"
     }
 ]
 def word_wrap(text, max):
-    # wraps text to max amount of characters per line
+    """Wraps text to max amount of characters per line"""
     words = text.split(" ")
     lines = []
     current_line = ""
@@ -227,7 +227,7 @@ def word_wrap(text, max):
     return lines
 
 def display_text(screen, text, x, y):
-    # displays enumerated text to screen
+    """Displays enumerated text to screen"""
     lines = word_wrap(text, screen_width - 50)
     line_height = font.get_height()
     for i, line in enumerate(lines):
@@ -235,7 +235,7 @@ def display_text(screen, text, x, y):
         screen.blit(rendered_text, (x, y + i * line_height))
 
 def draw_resource_bar(screen, x, y, width, height, current_value, max_value, color):
-    # draws the stats/resource bar at the top left
+    """Draws the stats/resource bar at the top left"""
     pygame.draw.rect(screen, RED, (x, y, width, height))
     fill_width = int((current_value / max_value) * width)
     pygame.draw.rect(screen, color, (x, y, fill_width, height))
@@ -246,6 +246,7 @@ def draw_resource_bar(screen, x, y, width, height, current_value, max_value, col
     screen.blit(text_surface, (text_x, text_y))
 
 def resource_display(screen, health, ammo, fuel, supplies):
+    """Displays resources in upper left corner"""
     draw_resource_bar(screen, 50, 50, 300, 30, health, 100, GREEN)
     display_text(screen, "Health", 360, 50)
     draw_resource_bar(screen, 50, 100, 300, 30, ammo, 50, BLUE)
@@ -256,7 +257,7 @@ def resource_display(screen, health, ammo, fuel, supplies):
     display_text(screen, "Supplies", 360, 200)
 
 def fade_in(surface, color, duration=1000):
-    # fades surface in
+    """Fades surface in"""
     fade_surface = pygame.Surface(surface.get_size())
     fade_surface.fill(color)
     for alpha in range(0, 255):
@@ -266,7 +267,7 @@ def fade_in(surface, color, duration=1000):
         pygame.time.delay(duration // 255)
 
 def fade_out(surface, color, duration=1000):
-    # fades surface out
+    """Fades surface out"""
     fade_surface = pygame.Surface(surface.get_size())
     fade_surface.fill(color)
     for alpha in range(255, -1, -1):
@@ -295,7 +296,7 @@ def intro():
         pygame.time.Clock().tick(60)
 
 def encounter_choice(encounter, health, ammo, fuel, supplies):
-    # individual encounters
+    """individual encounters"""
     fade_in(surface, BLACK, 1000)
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -325,7 +326,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 reaction_image = encounter[f"reaction_image_{choice_index + 1}"]
                 flavor_text = encounter["flavor_texts"][choice_index]
 
-                surface.blit(reaction_image, (0, 0))
+                surface.blit(load_and_scale_image(reaction_image, current_screen_width, current_screen_height), (0, 0))
                 pygame.draw.rect(surface, BLACK, pygame.Rect(50, screen_height - 150, screen_width - 100, 100))
                 display_text(surface, flavor_text, 60, screen_height - 120)
                 resource_display(surface, health, ammo, fuel, supplies)
@@ -342,7 +343,8 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
 
                 return health, ammo, fuel, supplies
 
-def dysentery_ending(username): # DYSENTERY
+def dysentery_ending(username):
+    """Dysentary Ending"""
     surface.fill(BLACK)
     dysentery_image = load_and_scale_image("assets/Dysentery.jpg", screen_width, screen_height)
     surface.blit(dysentery_image, (0, 0))
@@ -351,6 +353,7 @@ def dysentery_ending(username): # DYSENTERY
     pygame.time.delay(5000)
 
 def ammo_ending():
+    """No Ammo Ending"""
     surface.fill(BLACK)
     ammo_image = load_and_scale_image("assets/Ammo_Ending.jpg", screen_width, screen_height)
     surface.blit(ammo_image, (0, 0))
@@ -360,6 +363,7 @@ def ammo_ending():
     pygame.time.delay(5000)
 
 def fuel_ending():
+    """No Fuel Ending"""
     surface.fill(BLACK)
     fuel_image = load_and_scale_image("assets/Fuel_Ending.jpg", screen_width, screen_height)
     surface.blit(fuel_image, (0, 0))
@@ -369,6 +373,7 @@ def fuel_ending():
     pygame.time.delay(5000)
 
 def supplies_ending():
+    """No Supplies Ending"""
     surface.fill(BLACK)
     supplies_image = load_and_scale_image("assets/Supplies_Ending.jpg", screen_width, screen_height)
     surface.blit(supplies_image, (0, 0))
@@ -378,6 +383,7 @@ def supplies_ending():
     pygame.time.delay(5000)
 
 def good_ending(username):
+    """Survived Successfully Ending ... but at what cost?"""
     surface.fill(BLACK)
     good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", screen_width, screen_height)
     surface.blit(good_ending_image, (0, 0))
@@ -387,7 +393,7 @@ def good_ending(username):
     pygame.time.delay(5000)
 
 def start_the_game(username):
-    #main loop
+    """Main Loop"""
     intro()
     health, ammo, fuel, supplies = 100, 50, 20, 10
 
@@ -413,7 +419,7 @@ def start_the_game(username):
 
 
 def mainmenu():
-    # main menu
+    """Main Menu"""
     mainmenu = pygame_menu.Menu(
         'Oregon Trail 3000',
         screen_width // 2,
