@@ -1,6 +1,6 @@
 # Oregon Trail 3000
 
-	Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
+### Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
 ---
 
 ## Table of Contents
@@ -75,18 +75,18 @@ Players will face various threats to their survival throughout the game, includi
 
 ### Resources
 
-	•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.
-	•	**Ammo**: Used in combat encounters to protect the party from danger.
-	•	**Fuel**: Essential for advancing through encounters in your vehicle.
-	•	**Supplies**: A general resource for various encounters and survival needs.
+•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.
+•	**Ammo**: Used in combat encounters to protect the party from danger.
+•	**Fuel**: Essential for advancing through encounters in your vehicle.
+•	**Supplies**: A general resource for various encounters and survival needs.
 
 ## Key Features
 
-	•	Dynamic encounter system with multiple choices and outcomes
-	•	Resource management with visible progress bars
-	•	High-quality visual assets for immersive gameplay
-	•	Boss encounters with unique challenges
-	•	Exciting Midi Audio
+•	Dynamic encounter system with multiple choices and outcomes
+•	Resource management with visible progress bars
+•	High-quality visual assets for immersive gameplay
+•	Boss encounters with unique challenges
+•	Exciting Midi Audio
 
 ## Bugs
 
@@ -100,8 +100,8 @@ Tsim Muaj Yang <https://github.com/Jimwall0>
 
 ## Musical Assets
 
-DOOM Original Soundtrack
-Oregon Trail Original Soundtrack
+**DOOM** Original Soundtrack
+**Oregon Trail** Original Soundtrack
 
 ## License
 
