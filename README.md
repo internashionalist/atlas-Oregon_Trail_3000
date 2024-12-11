@@ -10,7 +10,8 @@
 - [File Descriptions](#file-descriptions)
 - [Usage](#usage)
 - [Gameplay](#gameplay)
-- [Encounters and Resources](#encounters-and-resources)
+- [Encounters](#encounters)
+- [Resources](#resources)
 - [Key Features](#key-features)
 - [Bugs](#bugs)
 - [Musical Assets](#musical-assets)
@@ -64,16 +65,16 @@ The game revolves around managing four key resources: Health, Ammo, Fuel, and Su
 3.	Monitor your resources displayed at the top of the screen.
 4.	Survive through all encounters to win the game.
 
-## Encounters and Resources
+## Encounters
 
 Players will face various threats to their survival throughout the game, including:<br>
-	•	Lost Souls: Fight or flee from a fiery swarm.
-	•	Lava River: Cross molten terrain with creativity and resilience.
-	•	Marauders: Defend your supplies from raiders or barter for safety.
-	•	Hellish Storm: Navigate treacherous weather with resourcefulness.
-	•	Archdevil Boss Fight: Test your limits against a powerful enemy.
+•	Lost Souls: Fight or flee from a fiery swarm.<br>
+•	Lava River: Cross molten terrain with creativity and resilience.<br>
+•	Marauders: Defend your supplies from raiders or barter for safety.<br>
+•	Hellish Storm: Navigate treacherous weather with resourcefulness.<br>
+•	Archdevil Boss Fight: Test your limits against a powerful enemy.
 
-### Resources
+## Resources
 
 •	**Health**: Represents the party’s survival. If it drops to zero, the game ends.<br>
 •	**Ammo**: Used in combat encounters to protect the party from danger.<br>
@@ -105,4 +106,4 @@ Tsim Muaj Yang <https://github.com/Jimwall0>
 
 ## License
 
-This project is released under the Public Domain. No copyright protection.
+This project is released under the Public Domain - no copyright protections.
