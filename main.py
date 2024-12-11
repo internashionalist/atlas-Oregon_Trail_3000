@@ -299,15 +299,15 @@ def intro():
 def encounter_choice(encounter, health, ammo, fuel, supplies):
     """individual encounters"""
     fade_in(surface, BLACK, 1000)
-    surface.fill(BLACK)
+    # surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
     resized_encounter_image = load_and_scale_image(encounter['background_image'], current_screen_width, current_screen_height)
     surface.blit(resized_encounter_image, (0, 0))
 
-    text_background_surface = pygame.Surface((screen_width - 100, 200), pygame.SRCALPHA)
+    text_background_surface = pygame.Surface((screen_width - 100, 250), pygame.SRCALPHA)
     text_background_surface.fill((0, 0, 0, 128))
     surface.blit(text_background_surface, (50, 250))
-    
+
     display_text(surface, encounter["text"], 100, 300)
 
     for i, choice in enumerate(encounter["choices"]):
@@ -317,7 +317,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     resource_display(surface, health, ammo, fuel, supplies)
     pygame.display.flip()
 
-    while True:  # main game loop with choice selection
+    while True:  # main encounter  loop with choice selection
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -340,7 +340,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 fuel += choice.get("fuel_change", 0)
                 supplies += choice.get("supply_change", 0)
 
-                fade_out(surface, BLACK, 1000)
+                # fade_out(surface, BLACK, 1000)
 
                 return health, ammo, fuel, supplies
 
