@@ -1,6 +1,6 @@
 # Oregon Trail 3000
 
-Oregon Trail 3000 is a survival game set in the harsh and unforgiving Martian landscape. Inspired by the classic Oregon Trail, players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
+	Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
 ---
 
 ## Table of Contents
@@ -23,7 +23,7 @@ Oregon Trail 3000 is a survival game set in the harsh and unforgiving Martian la
 
 This project is developed and tested in:
 
-  •	**Operating System**: Ubuntu 22.04 (Dockerized Environment)<br>
+  •	**Operating System**: Ubuntu 22.04<br>
   •	**Python Version**: Python 3.10<br>
   •	**Dependencies**:<br>
     - `pygame` (2.6.1+)<br>
@@ -36,8 +36,8 @@ This project is developed and tested in:
 ### Clone and Navigate to Game Repository
 
 ```bash
-git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
-cd atlas-T2_Hack_Sprint
+$ git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
+$ cd atlas-T2_Hack_Sprint
 ```
 
 ## File Descriptions
@@ -50,7 +50,7 @@ cd atlas-T2_Hack_Sprint
 To run the game, use the following command:
 
 ```bash
-python3 main.py
+$ python3 main.py
 ```
 
 ## Gameplay
@@ -59,14 +59,14 @@ The game revolves around managing four key resources: Health, Ammo, Fuel, and Su
 
 ### How to Play
 
-1.	Launch the game using the python3 main.py command.
+1.	Launch the game using the *python3 main.py* command.
 2.	Follow on-screen prompts to make choices during encounters.
 3.	Monitor your resources displayed at the top of the screen.
 4.	Survive through all encounters to win the game.
 
 ## Encounters and Resources
 
-Players will face various encounters throughout the game, including:
+Players will face various threats to their survival throughout the game, including:
 	•	Lost Souls: Fight or flee from a fiery swarm.
 	•	Lava River: Cross molten terrain with creativity and resilience.
 	•	Marauders: Defend your supplies from raiders or barter for safety.
@@ -75,10 +75,10 @@ Players will face various encounters throughout the game, including:
 
 ### Resources
 
-	•	Health: Represents the party’s survival. If it drops to zero, the game ends.
-	•	Ammo: Used in combat encounters to protect the party from danger.
-	•	Fuel: Essential for advancing through encounters in your vehicle.
-	•	Supplies: A general resource for various encounters and survival needs.
+	•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.
+	•	**Ammo**: Used in combat encounters to protect the party from danger.
+	•	**Fuel**: Essential for advancing through encounters in your vehicle.
+	•	**Supplies**: A general resource for various encounters and survival needs.
 
 ## Key Features
 
