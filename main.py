@@ -142,25 +142,25 @@ encounters = [
         "text": "A hellish storm erupts, forcing you to make a quick decision to survive.",
         "choices": [
         {
-            "text": "Hunker down and endure the tempest",
+            "text": "Hunker down and endure the tempest (-15 health, -3 supplies)",
             "health_change": -15,
             "ammo_change": 0,
             "fuel_change": 0,
             "supply_change": -3
         },
         {
-            "text": "Power through at full throttle",
+            "text": "Power through at full throttle (-10 health, -6 fuel)",
             "health_change": -10,
             "ammo_change": 0,
             "fuel_change": -6,
             "supply_change": 0
         },
         {
-            "text": "Attempt to go around the storm",
+            "text": "Attempt to go around the storm (-3 fuel_change, -2 supplies)",
             "health_change": 0,
             "ammo_change": 0,
-            "fuel_change": 3,
-            "supply_change": 2
+            "fuel_change": -3,
+            "supply_change": -2
         }
     ],
     "flavor_texts": [
@@ -235,7 +235,7 @@ def display_text(screen, text, x, y):
         screen.blit(rendered_text, (x, y + i * line_height))
 
 def draw_resource_bar(screen, x, y, width, height, current_value, max_value, color):
-    """Draws the stats/resource bar at the top left"""
+    """Draws the Resource Bar for an individual resource"""
     pygame.draw.rect(screen, RED, (x, y, width, height))
     fill_width = int((current_value / max_value) * width)
     pygame.draw.rect(screen, color, (x, y, fill_width, height))
