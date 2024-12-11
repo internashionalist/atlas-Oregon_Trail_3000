@@ -291,6 +291,7 @@ def intro():
     running = True
     mixer.music.load('assets/music/level2.mid')
     mixer.music.play()
+    current_screen_width, current_screen_height = surface.get_size()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -301,7 +302,7 @@ def intro():
         try:
             with open("dialogue.txt", "r") as file:
                 content = file.read()
-            display_text(surface, content, 400, 700)
+            display_text(surface, content, current_screen_width / 8, current_screen_height / 2)
         except FileNotFoundError:
             print("Error: file not found")
         pygame.display.update()
