@@ -1,17 +1,6 @@
-# atlas-T2_Hack_Sprint
-### Desc
-On a distant planet lays a group. They are immigrants to a new land not of Earth. Their goal is to arrive at a new spot of land and terraform the space to be inhabitable. You job is to oversee these immigrants to their new home. There is a twist though. The local TSA has been less than kind to people in general much less immigrants. The TSA isn't the only thing on Mars to keep you company. Try to see them through thick and thin whether them natural or unatural. Space Dysentry is a really big problem too.
-### Authors
-Stephen Newby <https://github.com/TheSnewby/><br>
-Nash Thames <https://github.com/internashionalist><br>
-Tsim Muaj Yang <tyang4204@gmail.com>
-
-
-
 # Oregon Trail 3000
 
-Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape. Inspired by the classic Oregon Trail, players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey across the hostile Martian terrain.
-
+### Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
 ---
 
 ## Table of Contents
@@ -21,9 +10,11 @@ Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape
 - [File Descriptions](#file-descriptions)
 - [Usage](#usage)
 - [Gameplay](#gameplay)
-- [Encounters and Resources](#encounters-and-resources)
+- [Encounters](#encounters)
+- [Resources](#resources)
 - [Key Features](#key-features)
 - [Bugs](#bugs)
+- [Musical Assets](#musical-assets)
 - [Authors](#authors)
 - [License](#license)
 
@@ -33,7 +24,7 @@ Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape
 
 This project is developed and tested in:
 
-  •	**Operating System**: Ubuntu 22.04 (Dockerized Environment)<br>
+  •	**Operating System**: Ubuntu 22.04<br>
   •	**Python Version**: Python 3.10<br>
   •	**Dependencies**:<br>
     - `pygame` (2.6.1+)<br>
@@ -43,24 +34,24 @@ This project is developed and tested in:
 
 ## Installation
 
-### Clone and Navigate to Game Repository
+Clone and Navigate to Game Repository
 
 ```bash
-git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
-cd atlas-T2_Hack_Sprint
+$ git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
+$ cd atlas-T2_Hack_Sprint
 ```
 
 ## File Descriptions
 
   •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.<br>
-  •	`assets/`: folder containing all visual assets used in the game (backgrounds, reaction images)
+  •	`assets/`: folder containing all visual and audio assets used in the game
 
 ## Usage
 
 To run the game, use the following command:
 
 ```bash
-python3 main.py
+$ python3 main.py
 ```
 
 ## Gameplay
@@ -69,37 +60,39 @@ The game revolves around managing four key resources: Health, Ammo, Fuel, and Su
 
 ### How to Play
 
-1.	Launch the game using the python3 main.py command.
+1.	Launch the game using the *python3 main.py* command.
 2.	Follow on-screen prompts to make choices during encounters.
 3.	Monitor your resources displayed at the top of the screen.
 4.	Survive through all encounters to win the game.
 
-## Encounters and Resources
+## Encounters
 
-Players will face various encounters throughout the game, including:
-	•	Lost Souls: Fight or flee from a fiery swarm.
-	•	Lava River: Cross molten terrain with creativity and resilience.
-	•	Marauders: Defend your supplies from raiders or barter for safety.
-	•	Hellish Storm: Navigate treacherous weather with resourcefulness.
-	•	Archdevil Boss Fight: Test your limits against a powerful enemy.
+Players will face various threats to their survival throughout the game, including:<br>
+•	**Lost Souls**: Fight or flee from a fiery swarm.<br>
+•	**Lava River**: Cross molten terrain with creativity and resilience.<br>
+•	**Marauders**: Defend your supplies from raiders or barter for safety.<br>
+•	**Hellish Storm**: Navigate treacherous weather with resourcefulness.<br>
+•	**Archdevil Boss Fight**: Test your limits against a powerful enemy.
 
-### Resources
+## Resources
 
-	•	Health: Represents the player’s survival. If it drops to zero, the game ends.
-	•	Ammo: Used in combat encounters. Running out limits combat choices.
-	•	Fuel: Essential for advancing through encounters.
-	•	Supplies: A general resource for various encounters and survival needs.
+Players must monitor and use these precious resources strategically to complete the game:<br>
+•	**Health**: Represents the party’s survival. If it drops to zero, the game ends.<br>
+•	**Ammo**: Used in combat encounters to protect the party from danger.<br>
+•	**Fuel**: Essential for advancing through encounters in your vehicle.<br>
+•	**Supplies**: A general resource for various encounters and survival needs.
 
 ## Key Features
 
-	•	Dynamic encounter system with multiple choices and outcomes.
-	•	Resource management with visible progress bars.
-	•	High-quality visual assets for immersive gameplay.
-	•	Boss encounters with unique challenges.
+•	Dynamic encounter system with multiple choices and outcomes<br>
+•	Resource management with visible progress bars<br>
+•	High-quality visual assets for immersive gameplay<br>
+•	Boss encounters with unique challenges<br>
+•	Exciting Midi Audio
 
 ## Bugs
 
-No known bugs at this time.
+Audio is low quality.
 
 ## Authors
 
@@ -107,6 +100,11 @@ Stephen Newby <https://github.com/TheSnewby/><br>
 Nash Thames <https://github.com/internashionalist><br>
 Tsim Muaj Yang <https://github.com/Jimwall0>
 
+## Musical Assets
+
+**DOOM** Original Soundtrack<br>
+**Oregon Trail** Original Soundtrack
+
 ## License
 
-This project is released under the Public Domain. No copyright protection.
+This project is released under the Public Domain - no copyright protections.
