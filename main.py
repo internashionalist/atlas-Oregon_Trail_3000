@@ -1,17 +1,21 @@
+#!/usr/bin/python3
+
 import pygame
 import pygame_menu
 from pygame_menu import themes
 import sys
 import os
+from pygame import mixer
 
-os.environ["SDL_OPENGL"] = "0"
-os.environ["SDL_VIDEODRIVER"] = "x11"
-os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
-os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-#os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
-os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
-os.environ["SDL_AUDIODRIVER"] = "dummy"
-
+# os.environ["SDL_OPENGL"] = "0"
+# os.environ["SDL_VIDEODRIVER"] = "x11"
+# os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
+# os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
+# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+# os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
+# os.environ["SDL_AUDIODRIVER"] = "dummy"
+# os.environ["SDL_AUDIODRIVER"] = 'mnt/c/Windows/System32/drivers/dmk.sys'
+# os.environ["SDL_AUDIODRIVER"] = "alsa"
 
 pygame.init() # start 'er up
 clock = pygame.time.Clock()
@@ -66,7 +70,8 @@ encounters = [
         "background_image": "assets/Lost_Souls.jpg",
         "reaction_image_1": "assets/Lost_Souls_Fight.jpg",
         "reaction_image_2": "assets/Lost_Souls_Flee.jpg",
-        "reaction_image_3": "assets/Lost_Souls_Offering.jpg"
+        "reaction_image_3": "assets/Lost_Souls_Offering.jpg",
+        "music": 'assets/music/level3.mid'
     },
     {
         "text": "A river of molten lava blocks your path, glowing with intense heat.",
@@ -101,7 +106,8 @@ encounters = [
         "background_image": "assets/Lava_River.jpg",
         "reaction_image_1": "assets/Lava_River_Bridge.jpg",
         "reaction_image_2": "assets/Lava_River_Through.jpg",
-        "reaction_image_3": "assets/Lava_River_Alternate.jpg"
+        "reaction_image_3": "assets/Lava_River_Alternate.jpg",
+        "music": 'assets/music/level6.mid'
     },
     {
         "text": "A pack of ravenous Marauders encircles your rover, demanding food and resources.",
@@ -136,7 +142,8 @@ encounters = [
         "background_image": "assets/Marauders.jpg",
         "reaction_image_1": "assets/Marauders_Fight.jpg",
         "reaction_image_2": "assets/Marauders_Fuel.jpg",
-        "reaction_image_3": "assets/Marauders_Supplies.jpg"
+        "reaction_image_3": "assets/Marauders_Supplies.jpg",
+        "music": 'assets/music/level4.mid'
     },
     {
         "text": "A hellish storm erupts, forcing you to make a quick decision to survive.",
@@ -171,7 +178,8 @@ encounters = [
     "background_image": "assets/Storm.jpg",
     "reaction_image_1": "assets/Storm_Endure.jpg",
     "reaction_image_2": "assets/Storm_Through.jpg",
-    "reaction_image_3": "assets/Storm_Around.jpg"
+    "reaction_image_3": "assets/Storm_Around.jpg",
+    "music": 'assets/music/level9.mid'
     },
     {
         "text": "An Archdevil wielding a massive flaming sword blocks your path. Its eyes glow with malice as it dares your party to approach.",
@@ -206,7 +214,8 @@ encounters = [
         "background_image": "assets/Archdevil.jpg",
         "reaction_image_1": "assets/Archdevil_Battle.jpg",
         "reaction_image_2": "assets/Archdevil_Fuel.jpg",
-        "reaction_image_3": "assets/Archdevil_Negotiate.jpg"
+        "reaction_image_3": "assets/Archdevil_Negotiate.jpg",
+        "music": 'assets/music/level1.mid'
     }
 ]
 
@@ -280,6 +289,8 @@ def fade_out(surface, color, duration=1000):
 def intro():
     """This is the intro after main menu"""
     running = True
+    mixer.music.load('assets/music/level2.mid')
+    mixer.music.play()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -317,6 +328,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     resource_display(surface, health, ammo, fuel, supplies)
     pygame.display.flip()
 
+    mixer.music.load(encounter['music'])
+    mixer.music.set_volume(0.3)
+    mixer.music.play()
+
     while True:  # main encounter  loop with choice selection
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -334,7 +349,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 display_text(surface, flavor_text, 60, current_screen_height - 240)
                 resource_display(surface, health, ammo, fuel, supplies)
                 pygame.display.flip()
-                pygame.time.delay(3000)
+                pygame.time.delay(5000)
 
                 choice = encounter["choices"][choice_index]
                 health += choice.get("health_change", 0)
@@ -355,39 +370,43 @@ def dysentery_ending(username):
     display_text(surface, f"You, {username} have died of dysentery.", 100, 300)
     pygame.display.flip()
     pygame.time.delay(5000)
+    fade_out(surface, BLACK, 1000)
 
 def ammo_ending():
     """No Ammo Ending"""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
-    ammo_image = load_and_scale_image("assets/Ammo_Ending.jpg", current_screen_width, current_screen_height)
+    ammo_image = load_and_scale_image("assets/Out_Of_Ammo.jpg", current_screen_width, current_screen_height)
     surface.blit(ammo_image, (0, 0))
     display_text(surface, "Overwhelmed and defenseless...", 100, 300)
     display_text(surface, "Without ammo, you were unable to fend off the dangers of Mars.", 100, 350)
     pygame.display.flip()
     pygame.time.delay(5000)
+    fade_out(surface, BLACK, 1000)
 
 def fuel_ending():
     """No Fuel Ending"""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
-    fuel_image = load_and_scale_image("assets/Fuel_Ending.jpg", current_screen_width, current_screen_height)
+    fuel_image = load_and_scale_image("assets/Out_Of_Fuel.jpg", current_screen_width, current_screen_height)
     surface.blit(fuel_image, (0, 0))
     display_text(surface, "Stranded and without options...", 100, 300)
     display_text(surface, "Out of fuel, you were unable to continue your journey.", 100, 350)
     pygame.display.flip()
     pygame.time.delay(5000)
+    fade_out(surface, BLACK, 1000)
 
 def supplies_ending():
     """No Supplies Ending"""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
-    supplies_image = load_and_scale_image("assets/Supplies_Ending.jpg", current_screen_width, current_screen_height)
+    supplies_image = load_and_scale_image("assets/Out_Of_Supplies.jpg", current_screen_width, current_screen_height)
     surface.blit(supplies_image, (0, 0))
     display_text(surface, "Starving and desperate...", 100, 300)
     display_text(surface, "Without supplies, survival was impossible.", 100, 350)
     pygame.display.flip()
     pygame.time.delay(5000)
+    fade_out(surface, BLACK, 1000)
 
 def good_ending(username):
     """Survived Successfully Ending ... but at what cost?"""
@@ -439,6 +458,10 @@ def mainmenu():
     mainmenu.add.button('Play', lambda: start_the_game(name_input.get_value()))
     mainmenu.add.button('Intro', lambda: intro())
     mainmenu.add.button('Quit', pygame_menu.events.EXIT)
+    mixer.init(frequency=44100, size=-16, channels=2, buffer=32768)
+    mixer.music.load('assets/music/The Oregon Trail - Main Theme.mp3')
+    mixer.music.set_volume(0.3)
+    mixer.music.play()
 
     clock = pygame.time.Clock()
 
