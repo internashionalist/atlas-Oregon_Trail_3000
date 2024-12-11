@@ -238,7 +238,8 @@ def word_wrap(text, max):
 
 def display_text(screen, text, x, y):
     """Displays enumerated text to screen"""
-    lines = word_wrap(text, screen_width - 50)
+    current_screen_width, current_screen_height = surface.get_size()
+    lines = word_wrap(text, current_screen_width - 50)
     line_height = font.get_height()
     for i, line in enumerate(lines):
         rendered_text = font.render(line, True, GREEN)
