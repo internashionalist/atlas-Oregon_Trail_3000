@@ -34,7 +34,7 @@ This project is developed and tested in:
 
 ## Installation
 
-### Clone and Navigate to Game Repository
+Clone and Navigate to Game Repository
 
 ```bash
 $ git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
@@ -68,14 +68,15 @@ The game revolves around managing four key resources: Health, Ammo, Fuel, and Su
 ## Encounters
 
 Players will face various threats to their survival throughout the game, including:<br>
-•	Lost Souls: Fight or flee from a fiery swarm.<br>
-•	Lava River: Cross molten terrain with creativity and resilience.<br>
-•	Marauders: Defend your supplies from raiders or barter for safety.<br>
-•	Hellish Storm: Navigate treacherous weather with resourcefulness.<br>
-•	Archdevil Boss Fight: Test your limits against a powerful enemy.
+•	**Lost Souls**: Fight or flee from a fiery swarm.<br>
+•	**Lava River**: Cross molten terrain with creativity and resilience.<br>
+•	**Marauders**: Defend your supplies from raiders or barter for safety.<br>
+•	**Hellish Storm**: Navigate treacherous weather with resourcefulness.<br>
+•	**Archdevil Boss Fight**: Test your limits against a powerful enemy.
 
 ## Resources
 
+Players must monitor and use these precious resources strategically to complete the game:<br>
 •	**Health**: Represents the party’s survival. If it drops to zero, the game ends.<br>
 •	**Ammo**: Used in combat encounters to protect the party from danger.<br>
 •	**Fuel**: Essential for advancing through encounters in your vehicle.<br>
