@@ -24,6 +24,7 @@ Oregon Trail 3000 is a survival game set in a post-apocalyptic Martian landscape
 - [Encounters and Resources](#encounters-and-resources)
 - [Key Features](#key-features)
 - [Bugs](#bugs)
+- [Musical Assets](#musical-assets)
 - [Authors](#authors)
 - [License](#license)
 
@@ -53,7 +54,7 @@ cd atlas-T2_Hack_Sprint
 ## File Descriptions
 
   •	`main.py`: the main game file containing implementation of the gameplay loop, encounters, and resource management.<br>
-  •	`assets/`: folder containing all visual assets used in the game (backgrounds, reaction images)
+  •	`assets/`: folder containing all visual and audio assets used in the game (backgrounds, reaction images)
 
 ## Usage
 
@@ -96,16 +97,21 @@ Players will face various encounters throughout the game, including:
 	•	Resource management with visible progress bars.
 	•	High-quality visual assets for immersive gameplay.
 	•	Boss encounters with unique challenges.
-
+	•	Exciting Midi Audio.
 ## Bugs
 
-No known bugs at this time.
+Audio is low quality.
 
 ## Authors
 
 Stephen Newby <https://github.com/TheSnewby/><br>
 Nash Thames <https://github.com/internashionalist><br>
 Tsim Muaj Yang <https://github.com/Jimwall0>
+
+## Musical Assets
+
+DOOM Original Soundtrack
+Oregon Trail Original Soundtrack
 
 ## License
 
