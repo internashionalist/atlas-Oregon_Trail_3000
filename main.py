@@ -6,6 +6,7 @@ from pygame_menu import themes
 import sys
 import os
 from pygame import mixer
+import tkinter
 
 # os.environ["SDL_OPENGL"] = "0"
 # os.environ["SDL_VIDEODRIVER"] = "x11"
@@ -20,8 +21,8 @@ from pygame import mixer
 pygame.init() # start 'er up
 clock = pygame.time.Clock()
 username = ''
-
-screen_width, screen_height = 1920, 1080
+root = tkinter.Tk()
+screen_width, screen_height = root.winfo_screenwidth(), root.winfo_screenheight()
 surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
 
 GREEN = (0, 255, 0)
@@ -240,7 +241,7 @@ def word_wrap(text, max):
 
 def display_text(screen, text, x, y):
     """Displays enumerated text to screen"""
-    lines = word_wrap(text, screen_width - 50)
+    lines = word_wrap(text, screen_width - (screen_width / 4 ))
     line_height = font.get_height()
     for i, line in enumerate(lines):
         rendered_text = font.render(line, True, GREEN)
