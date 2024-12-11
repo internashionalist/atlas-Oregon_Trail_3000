@@ -210,6 +210,7 @@ encounters = [
     }
 ]
 def word_wrap(text, max):
+    # wraps text to max amount of characters per line
     words = text.split(" ")
     lines = []
     current_line = ""
@@ -226,6 +227,7 @@ def word_wrap(text, max):
     return lines
 
 def display_text(screen, text, x, y):
+    # displays enumerated text to screen
     lines = word_wrap(text, screen_width - 50)
     line_height = font.get_height()
     for i, line in enumerate(lines):
@@ -233,6 +235,7 @@ def display_text(screen, text, x, y):
         screen.blit(rendered_text, (x, y + i * line_height))
 
 def draw_resource_bar(screen, x, y, width, height, current_value, max_value, color):
+    # draws the stats/resource bar at the top left
     pygame.draw.rect(screen, RED, (x, y, width, height))
     fill_width = int((current_value / max_value) * width)
     pygame.draw.rect(screen, color, (x, y, fill_width, height))
@@ -253,6 +256,7 @@ def resource_display(screen, health, ammo, fuel, supplies):
     display_text(screen, "Supplies", 360, 200)
 
 def fade_in(surface, color, duration=1000):
+    # fades surface in
     fade_surface = pygame.Surface(surface.get_size())
     fade_surface.fill(color)
     for alpha in range(0, 255):
@@ -262,6 +266,7 @@ def fade_in(surface, color, duration=1000):
         pygame.time.delay(duration // 255)
 
 def fade_out(surface, color, duration=1000):
+    # fades surface out
     fade_surface = pygame.Surface(surface.get_size())
     fade_surface.fill(color)
     for alpha in range(255, -1, -1):
@@ -290,6 +295,7 @@ def intro():
         pygame.time.Clock().tick(60)
 
 def encounter_choice(encounter, health, ammo, fuel, supplies):
+    # individual encounters
     fade_in(surface, BLACK, 1000)
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -381,9 +387,9 @@ def good_ending(username):
     pygame.time.delay(5000)
 
 def start_the_game(username):
+    #main loop
     intro()
     health, ammo, fuel, supplies = 100, 50, 20, 10
-    encounter_index = 0
 
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(encounter, health, ammo, fuel, supplies)
@@ -407,6 +413,7 @@ def start_the_game(username):
 
 
 def mainmenu():
+    # main menu
     mainmenu = pygame_menu.Menu(
         'Oregon Trail 3000',
         screen_width // 2,
