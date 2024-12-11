@@ -27,7 +27,9 @@ surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABL
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+PURPLE = (128, 0, 128)
 ORANGE = (255, 165, 0)
+
 BLACK = (0, 0, 0)
 
 font = pygame.font.Font(None, 36)
@@ -263,7 +265,7 @@ def resource_display(screen, health, ammo, fuel, supplies):
     display_text(screen, "Ammo", 360, 100)
     draw_resource_bar(screen, 50, 150, 300, 30, fuel, 20, ORANGE)
     display_text(screen, "Fuel", 360, 150)
-    draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, GREEN)
+    draw_resource_bar(screen, 50, 200, 300, 30, supplies, 10, PURPLE)
     display_text(screen, "Supplies", 360, 200)
 
 def fade_in(surface, color, duration=1000):
