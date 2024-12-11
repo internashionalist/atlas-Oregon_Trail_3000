@@ -66,7 +66,7 @@ The game revolves around managing four key resources: Health, Ammo, Fuel, and Su
 
 ## Encounters and Resources
 
-Players will face various threats to their survival throughout the game, including:
+Players will face various threats to their survival throughout the game, including:<br>
 	•	Lost Souls: Fight or flee from a fiery swarm.
 	•	Lava River: Cross molten terrain with creativity and resilience.
 	•	Marauders: Defend your supplies from raiders or barter for safety.
@@ -100,7 +100,7 @@ Tsim Muaj Yang <https://github.com/Jimwall0>
 
 ## Musical Assets
 
-**DOOM** Original Soundtrack
+**DOOM** Original Soundtrack<br>
 **Oregon Trail** Original Soundtrack
 
 ## License
