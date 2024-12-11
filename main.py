@@ -156,7 +156,7 @@ encounters = [
             "supply_change": 0
         },
         {
-            "text": "Attempt to go around the storm (-3 fuel_change, -2 supplies)",
+            "text": "Attempt to go around the storm (-3 fuel, -2 supplies)",
             "health_change": 0,
             "ammo_change": 0,
             "fuel_change": -3,
@@ -209,6 +209,7 @@ encounters = [
         "reaction_image_3": "assets/Archdevil_Negotiate.jpg"
     }
 ]
+
 def word_wrap(text, max):
     """Wraps text to max amount of characters per line"""
     words = text.split(" ")
@@ -344,9 +345,10 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                 return health, ammo, fuel, supplies
 
 def dysentery_ending(username):
-    """Dysentary Ending"""
+    """No Health Ending"""
     surface.fill(BLACK)
-    dysentery_image = load_and_scale_image("assets/Dysentery.jpg", screen_width, screen_height)
+    current_screen_width, current_screen_height = surface.get_size()
+    dysentery_image = load_and_scale_image("assets/Dysentery.jpg", current_screen_width, current_screen_height)
     surface.blit(dysentery_image, (0, 0))
     display_text(surface, f"You, {username} have died of dysentery.", 100, 300)
     pygame.display.flip()
@@ -355,7 +357,8 @@ def dysentery_ending(username):
 def ammo_ending():
     """No Ammo Ending"""
     surface.fill(BLACK)
-    ammo_image = load_and_scale_image("assets/Ammo_Ending.jpg", screen_width, screen_height)
+    current_screen_width, current_screen_height = surface.get_size()
+    ammo_image = load_and_scale_image("assets/Ammo_Ending.jpg", current_screen_width, current_screen_height)
     surface.blit(ammo_image, (0, 0))
     display_text(surface, "Overwhelmed and defenseless...", 100, 300)
     display_text(surface, "Without ammo, you were unable to fend off the dangers of Mars.", 100, 350)
@@ -365,7 +368,8 @@ def ammo_ending():
 def fuel_ending():
     """No Fuel Ending"""
     surface.fill(BLACK)
-    fuel_image = load_and_scale_image("assets/Fuel_Ending.jpg", screen_width, screen_height)
+    current_screen_width, current_screen_height = surface.get_size()
+    fuel_image = load_and_scale_image("assets/Fuel_Ending.jpg", current_screen_width, current_screen_height)
     surface.blit(fuel_image, (0, 0))
     display_text(surface, "Stranded and without options...", 100, 300)
     display_text(surface, "Out of fuel, you were unable to continue your journey.", 100, 350)
@@ -375,7 +379,8 @@ def fuel_ending():
 def supplies_ending():
     """No Supplies Ending"""
     surface.fill(BLACK)
-    supplies_image = load_and_scale_image("assets/Supplies_Ending.jpg", screen_width, screen_height)
+    current_screen_width, current_screen_height = surface.get_size()
+    supplies_image = load_and_scale_image("assets/Supplies_Ending.jpg", current_screen_width, current_screen_height)
     surface.blit(supplies_image, (0, 0))
     display_text(surface, "Starving and desperate...", 100, 300)
     display_text(surface, "Without supplies, survival was impossible.", 100, 350)
@@ -385,7 +390,8 @@ def supplies_ending():
 def good_ending(username):
     """Survived Successfully Ending ... but at what cost?"""
     surface.fill(BLACK)
-    good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", screen_width, screen_height)
+    current_screen_width, current_screen_height = surface.get_size()
+    good_ending_image = load_and_scale_image("assets/Good_Ending.jpg", current_screen_width, current_screen_height)
     surface.blit(good_ending_image, (0, 0))
     display_text(surface, "Congratulations!", 100, 300)
     display_text(surface, f"You, {username}, have reached New Oregon!", 100, 350)
