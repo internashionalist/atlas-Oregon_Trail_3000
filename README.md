@@ -1,3 +1,6 @@
+<img width="1753" height="1157" alt="image" src="https://github.com/user-attachments/assets/a0107679-3d53-4e7b-ac1c-e9444f5b2272" />
+
+
 # Oregon Trail 3000
 
 ### Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
