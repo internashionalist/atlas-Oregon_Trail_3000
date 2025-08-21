@@ -3,13 +3,12 @@
 Main game loop and logic for Oregon Trail 3000.
 """
 
-import os
 import sys
 
+from collections import namedtuple
 import pygame
 import pygame_menu
 from pygame import mixer
-from pygame_menu import theme
 
 # os.environ["SDL_OPENGL"] = "0"
 # os.environ["SDL_VIDEODRIVER"] = "x11"
@@ -20,6 +19,10 @@ from pygame_menu import theme
 # os.environ["SDL_AUDIODRIVER"] = "dummy"
 # os.environ["SDL_AUDIODRIVER"] = 'mnt/c/Windows/System32/drivers/dmk.sys'
 # os.environ["SDL_AUDIODRIVER"] = "alsa"
+
+GameContext = namedtuple(
+    "GameContext", ["surface", "screen_width", "game_state", "clock", "player", "username"]
+)
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
@@ -225,15 +228,15 @@ encounters = [
     }
 ]
 
-def word_wrap(text, max):
-    """Wraps text to max amount of characters per line."""
+def word_wrap(text, max_width):
+    """Wraps text to max_width amount of characters per line."""
     words = text.split(" ")
     lines = []
     current_line = ""
     for word in words:
         temp_line = current_line + " " + word if current_line else word
         width, _ = font.size(temp_line)
-        if width <= max:
+        if width <= max_width:
             current_line = temp_line
         else:
             lines.append(current_line)
@@ -295,11 +298,13 @@ def fade_out(surface, color, duration=1000):
         pygame.display.update()
         pygame.time.delay(duration // 255)
 
-def intro(surface, screen_width):
+def intro(context):
     """Show the intro after the main menu."""
     running = True
     mixer.music.load('assets/music/level2.mid')
     mixer.music.play()
+    surface = context.surface
+    screen_width = context.screen_width
     current_screen_width, current_screen_height = surface.get_size()
     while running:
         for event in pygame.event.get():
@@ -473,10 +478,14 @@ def good_ending(username, surface, screen_width):
     pygame.display.flip()
     pygame.time.delay(5000)
 
-def start_the_game(username, surface, screen_width, screen_height, clock):
+def start_the_game(context):
     """Main game loop that runs all encounters and handles endings."""
-    intro(surface, screen_width)
+    intro(context)
     health, ammo, fuel, supplies = 100, 50, 20, 10
+    surface = context.surface
+    screen_width = context.screen_width
+    clock = context.clock
+    username = context.username
 
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(
@@ -500,8 +509,12 @@ def start_the_game(username, surface, screen_width, screen_height, clock):
     good_ending(username, surface, screen_width)
 
 
-def mainmenu(surface, screen_width, screen_height, clock, username):
+def mainmenu(context):
     """Main Menu."""
+    surface = context.surface
+    screen_width = context.screen_width
+    clock = context.clock
+    screen_height = pygame.display.Info().current_h
     menu = pygame_menu.Menu(
         'Oregon Trail 3000',
         screen_width // 2,
@@ -510,8 +523,11 @@ def mainmenu(surface, screen_width, screen_height, clock, username):
     )
     menu.add.label('Welcome to Mars!')
     name_input = menu.add.text_input('Name: ', default='username', maxchar=25)
-    menu.add.button('Play', lambda: start_the_game(name_input.get_value(), surface, screen_width, screen_height, clock))
-    menu.add.button('Intro', lambda: intro(surface, screen_width))
+    def play_game():
+        context = GameContext(surface, screen_width, None, clock, None, name_input.get_value())
+        start_the_game(context)
+    menu.add.button('Play', play_game)
+    menu.add.button('Intro', lambda: intro(context))
     menu.add.button('Quit', pygame_menu.events.EXIT)
     mixer.init(frequency=44100, size=-16, channels=2, buffer=32768)
     mixer.music.load('assets/music/The Oregon Trail - Main Theme.mp3')
@@ -532,13 +548,15 @@ def mainmenu(surface, screen_width, screen_height, clock, username):
 
 
 def main():
-    """Entrypoint for the game."""
+    """Entry point for the game."""
     pygame.init()
     clock = pygame.time.Clock()
-    username = ''
     screen_width, screen_height = pygame.display.Info().current_w, pygame.display.Info().current_h
     surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
-    mainmenu(surface, screen_width, screen_height, clock, username)
+    username = None
+    # GameContext: surface, screen_width, game_state, clock, player, username
+    context = GameContext(surface, screen_width, None, clock, None, username)
+    mainmenu(context)
     pygame.quit()
 
 if __name__ == '__main__':
