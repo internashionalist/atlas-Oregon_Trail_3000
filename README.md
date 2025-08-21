@@ -5,24 +5,24 @@
 
 # Oregon Trail 3000
 
-### Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
+	Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
 ---
 
 ## Table of Contents
-	- [Table of Contents](#table-of-contents)
-	- [Environment](#environment)
-	- [Installation](#installation)
-	- [File Descriptions](#file-descriptions)
-	- [Usage](#usage)
-	- [Gameplay](#gameplay)
-		- [How to Play](#how-to-play)
-	- [Encounters](#encounters)
-	- [Resources](#resources)
-	- [Key Features](#key-features)
-	- [Bugs](#bugs)
-	- [Authors](#authors)
-	- [Musical Assets](#musical-assets)
-	- [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Environment](#environment)
+- [Installation](#installation)
+- [File Descriptions](#file-descriptions)
+- [Usage](#usage)
+- [Gameplay](#gameplay)
+	- [How to Play](#how-to-play)
+- [Encounters](#encounters)
+- [Resources](#resources)
+- [Key Features](#key-features)
+- [Bugs](#bugs)
+- [Authors](#authors)
+- [Musical Assets](#musical-assets)
+- [License](#license)
 
 ---
 
