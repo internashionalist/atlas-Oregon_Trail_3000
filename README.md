@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="assets/OT3000.jpg" alt="Oregon Trail 3000" width="500"/>
+</p>
+
 # Oregon Trail 3000
 
 ### Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.
@@ -5,18 +10,22 @@
 
 ## Table of Contents
 
-- [Environment](#environment)
-- [Installation](#installation)
-- [File Descriptions](#file-descriptions)
-- [Usage](#usage)
-- [Gameplay](#gameplay)
-- [Encounters](#encounters)
-- [Resources](#resources)
-- [Key Features](#key-features)
-- [Bugs](#bugs)
-- [Musical Assets](#musical-assets)
-- [Authors](#authors)
-- [License](#license)
+- [Oregon Trail 3000](#oregon-trail-3000)
+		- [Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.](#inspired-by-the-childhood-classic-oregon-trail-3000-is-a-survival-game-set-in-the-harsh-and-unforgiving-martian-landscape-players-must-manage-limited-resources-face-challenging-encounters-and-make-life-or-death-decisions-to-survive-the-journey-to-the-colony-of-new-oregon)
+	- [Table of Contents](#table-of-contents)
+	- [Environment](#environment)
+	- [Installation](#installation)
+	- [File Descriptions](#file-descriptions)
+	- [Usage](#usage)
+	- [Gameplay](#gameplay)
+		- [How to Play](#how-to-play)
+	- [Encounters](#encounters)
+	- [Resources](#resources)
+	- [Key Features](#key-features)
+	- [Bugs](#bugs)
+	- [Authors](#authors)
+	- [Musical Assets](#musical-assets)
+	- [License](#license)
 
 ---
 
@@ -37,8 +46,8 @@ This project is developed and tested in:
 Clone and Navigate to Game Repository
 
 ```bash
-$ git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
-$ cd atlas-T2_Hack_Sprint
+$ git clone https://github.com/internashionalist/atlas-Oregon_Trail_3000.git
+$ cd atlas-Oregon_Trail_3000
 ```
 
 ## File Descriptions
