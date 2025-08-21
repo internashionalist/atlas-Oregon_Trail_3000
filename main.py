@@ -21,12 +21,11 @@ from pygame_menu import theme
 # os.environ["SDL_AUDIODRIVER"] = 'mnt/c/Windows/System32/drivers/dmk.sys'
 # os.environ["SDL_AUDIODRIVER"] = "alsa"
 
-pygame.init() # start 'er up
-clock = pygame.time.Clock()
-username = ''
-screen_width, screen_height = pygame.display.Info().current_w, pygame.display.Info().current_h
-surface = pygame.display.set_mode(
-    (screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+PURPLE = (128, 0, 128)
+ORANGE = (255, 165, 0)
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
@@ -243,9 +242,10 @@ def word_wrap(text, max):
         lines.append(current_line)
     return lines
 
-def display_text(screen, text, x, y):
+def display_text(screen, text, x, y, screen_width=None):
     """Displays enumerated text to screen."""
-    lines = word_wrap(text, screen_width - (screen_width / 4 ))
+    width = screen_width if screen_width is not None else 1200
+    lines = word_wrap(text, width - (width / 4))
     line_height = font.get_height()
     for i, line in enumerate(lines):
         rendered_text = font.render(line, True, GREEN)
@@ -262,7 +262,7 @@ def draw_resource_bar(screen, x, y, width, height, current_value, max_value, col
     text_y = y + height // 2 - text_surface.get_height() // 2
     screen.blit(text_surface, (text_x, text_y))
 
-def resource_display(screen, health, ammo, fuel, supplies):
+def resource_display(screen, health, ammo, fuel, supplies, screen_width=None):
     """Displays resources in upper left corner."""
     resources = [
         ("Health", health, 100, GREEN),
@@ -273,7 +273,7 @@ def resource_display(screen, health, ammo, fuel, supplies):
     for i, (label, value, max_value, color) in enumerate(resources):
         y = 50 + i * 50
         draw_resource_bar(screen, 50, y, 300, 30, value, max_value, color)
-        display_text(screen, label, 360, y)
+        display_text(screen, label, 360, y, screen_width)
 
 def fade_in(surface, color, duration=1000):
     """Fades surface in."""
@@ -295,7 +295,7 @@ def fade_out(surface, color, duration=1000):
         pygame.display.update()
         pygame.time.delay(duration // 255)
 
-def intro():
+def intro(surface, screen_width):
     """Show the intro after the main menu."""
     running = True
     mixer.music.load('assets/music/level2.mid')
@@ -316,13 +316,14 @@ def intro():
                 content,
                 current_screen_width / 8,
                 current_screen_height / 2,
+                screen_width
             )
         except FileNotFoundError:
             print("Error: file not found")
         pygame.display.update()
         pygame.time.Clock().tick(60)
 
-def encounter_choice(encounter, health, ammo, fuel, supplies):
+def encounter_choice(encounter, health, ammo, fuel, supplies, surface, screen_width):
     """Runs a single encounter, handles player choice and updates resources."""
     fade_in(surface, BLACK, 1000)
     current_screen_width, current_screen_height = surface.get_size()
@@ -336,15 +337,15 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
     text_background_surface.fill((0, 0, 0, 128))
     surface.blit(text_background_surface, (50, 250))
 
-    display_text(surface, encounter["text"], 100, 300)
+    display_text(surface, encounter["text"], 100, 300, screen_width)
 
     for i, choice in enumerate(encounter["choices"]):
         display_text(
-            surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50
+            surface, f"{i + 1}: {choice['text']}", 100, 350 + i * 50, screen_width
         )
     pygame.display.flip()
 
-    resource_display(surface, health, ammo, fuel, supplies)
+    resource_display(surface, health, ammo, fuel, supplies, screen_width)
     pygame.display.flip()
 
     mixer.music.load(encounter['music'])
@@ -376,9 +377,9 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
                     ft_bg_surface, (50, current_screen_height - 250)
                 )
                 display_text(
-                    surface, flavor_text, 60, current_screen_height - 240
+                    surface, flavor_text, 60, current_screen_height - 240, screen_width
                 )
-                resource_display(surface, health, ammo, fuel, supplies)
+                resource_display(surface, health, ammo, fuel, supplies, screen_width)
                 pygame.display.flip()
                 pygame.time.delay(5000)
 
@@ -390,7 +391,7 @@ def encounter_choice(encounter, health, ammo, fuel, supplies):
 
                 return health, ammo, fuel, supplies
 
-def dysentery_ending(username):
+def dysentery_ending(username, surface, screen_width):
     """Show the ending for death by health depletion."""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -399,13 +400,13 @@ def dysentery_ending(username):
     )
     surface.blit(dysentery_image, (0, 0))
     display_text(
-        surface, f"You, {username} have died of dysentery.", 100, 300
+        surface, f"You, {username} have died of dysentery.", 100, 300, screen_width
     )
     pygame.display.flip()
     pygame.time.delay(5000)
     fade_out(surface, BLACK, 1000)
 
-def ammo_ending():
+def ammo_ending(surface, screen_width):
     """Show the ending for running out of ammo."""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -413,18 +414,19 @@ def ammo_ending():
         "assets/Out_Of_Ammo.jpg", current_screen_width, current_screen_height
     )
     surface.blit(ammo_image, (0, 0))
-    display_text(surface, "Overwhelmed and defenseless...", 100, 300)
+    display_text(surface, "Overwhelmed and defenseless...", 100, 300, screen_width)
     display_text(
         surface,
         "Without ammo, you were unable to fend off the dangers of Mars.",
         100,
         350,
+        screen_width
     )
     pygame.display.flip()
     pygame.time.delay(5000)
     fade_out(surface, BLACK, 1000)
 
-def fuel_ending():
+def fuel_ending(surface, screen_width):
     """Show the ending for running out of fuel."""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -432,15 +434,15 @@ def fuel_ending():
         "assets/Out_Of_Fuel.jpg", current_screen_width, current_screen_height
     )
     surface.blit(fuel_image, (0, 0))
-    display_text(surface, "Stranded and without options...", 100, 300)
+    display_text(surface, "Stranded and without options...", 100, 300, screen_width)
     display_text(
-        surface, "Out of fuel, you were unable to continue your journey.", 100, 350
+        surface, "Out of fuel, you were unable to continue your journey.", 100, 350, screen_width
     )
     pygame.display.flip()
     pygame.time.delay(5000)
     fade_out(surface, BLACK, 1000)
 
-def supplies_ending():
+def supplies_ending(surface, screen_width):
     """Show the ending for running out of supplies."""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -448,15 +450,15 @@ def supplies_ending():
         "assets/Out_Of_Supplies.jpg", current_screen_width, current_screen_height
     )
     surface.blit(supplies_image, (0, 0))
-    display_text(surface, "Starving and desperate...", 100, 300)
+    display_text(surface, "Starving and desperate...", 100, 300, screen_width)
     display_text(
-        surface, "Without supplies, survival was impossible.", 100, 350
+        surface, "Without supplies, survival was impossible.", 100, 350, screen_width
     )
     pygame.display.flip()
     pygame.time.delay(5000)
     fade_out(surface, BLACK, 1000)
 
-def good_ending(username):
+def good_ending(username, surface, screen_width):
     """Show the ending for surviving the journey."""
     surface.fill(BLACK)
     current_screen_width, current_screen_height = surface.get_size()
@@ -464,42 +466,41 @@ def good_ending(username):
         "assets/Good_Ending.jpg", current_screen_width, current_screen_height
     )
     surface.blit(good_ending_image, (0, 0))
-    display_text(surface, "Congratulations!", 100, 300)
+    display_text(surface, "Congratulations!", 100, 300, screen_width)
     display_text(
-        surface, f"You, {username}, have reached New Oregon!", 100, 350
+        surface, f"You, {username}, have reached New Oregon!", 100, 350, screen_width
     )
     pygame.display.flip()
     pygame.time.delay(5000)
 
-def start_the_game(username):
+def start_the_game(username, surface, screen_width, screen_height, clock):
     """Main game loop that runs all encounters and handles endings."""
-    intro()
+    intro(surface, screen_width)
     health, ammo, fuel, supplies = 100, 50, 20, 10
 
     for encounter in encounters:
         health, ammo, fuel, supplies = encounter_choice(
-            encounter, health, ammo, fuel, supplies
-        )
+            encounter, health, ammo, fuel, supplies, surface, screen_width)
         if health <= 0:
-            dysentery_ending(username)
+            dysentery_ending(username, surface, screen_width)
             return
         if ammo <= 0:
-            ammo_ending()
+            ammo_ending(surface, screen_width)
             return
         if fuel <= 0:
-            fuel_ending()
+            fuel_ending(surface, screen_width)
             return
         if supplies <= 0:
-            supplies_ending()
+            supplies_ending(surface, screen_width)
             return
 
-        resource_display(surface, health, ammo, fuel, supplies)
+        resource_display(surface, health, ammo, fuel, supplies, screen_width)
         pygame.display.flip()
         clock.tick(60)
-    good_ending(username)
+    good_ending(username, surface, screen_width)
 
 
-def mainmenu():
+def mainmenu(surface, screen_width, screen_height, clock, username):
     """Main Menu."""
     menu = pygame_menu.Menu(
         'Oregon Trail 3000',
@@ -509,15 +510,13 @@ def mainmenu():
     )
     menu.add.label('Welcome to Mars!')
     name_input = menu.add.text_input('Name: ', default='username', maxchar=25)
-    menu.add.button('Play', lambda: start_the_game(name_input.get_value()))
-    menu.add.button('Intro', intro)
+    menu.add.button('Play', lambda: start_the_game(name_input.get_value(), surface, screen_width, screen_height, clock))
+    menu.add.button('Intro', lambda: intro(surface, screen_width))
     menu.add.button('Quit', pygame_menu.events.EXIT)
     mixer.init(frequency=44100, size=-16, channels=2, buffer=32768)
     mixer.music.load('assets/music/The Oregon Trail - Main Theme.mp3')
     mixer.music.set_volume(0.3)
     mixer.music.play()
-
-    clock = pygame.time.Clock()
 
     while True:
         events = pygame.event.get()
@@ -534,7 +533,12 @@ def mainmenu():
 
 def main():
     """Entrypoint for the game."""
-    mainmenu()
+    pygame.init()
+    clock = pygame.time.Clock()
+    username = ''
+    screen_width, screen_height = pygame.display.Info().current_w, pygame.display.Info().current_h
+    surface = pygame.display.set_mode((screen_width, screen_height), pygame.RESIZABLE | pygame.FULLSCREEN)
+    mainmenu(surface, screen_width, screen_height, clock, username)
     pygame.quit()
 
 if __name__ == '__main__':
