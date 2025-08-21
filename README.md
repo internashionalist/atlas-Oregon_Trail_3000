@@ -1,5 +1,6 @@
-<img width="1753" height="1157" alt="image" src="https://github.com/user-attachments/assets/a0107679-3d53-4e7b-ac1c-e9444f5b2272" />
-
+<p align="center">
+  <img src="assets/OT3000.jpg" alt="Oregon Trail 3000" width="1000"/>
+</p>
 
 # Oregon Trail 3000
 
@@ -7,18 +8,19 @@
 ---
 
 ## Table of Contents
-
+- [Table of Contents](#table-of-contents)
 - [Environment](#environment)
 - [Installation](#installation)
 - [File Descriptions](#file-descriptions)
 - [Usage](#usage)
 - [Gameplay](#gameplay)
+	- [How to Play](#how-to-play)
 - [Encounters](#encounters)
 - [Resources](#resources)
 - [Key Features](#key-features)
 - [Bugs](#bugs)
-- [Musical Assets](#musical-assets)
 - [Authors](#authors)
+- [Musical Assets](#musical-assets)
 - [License](#license)
 
 ---
@@ -40,8 +42,8 @@ This project is developed and tested in:
 Clone and Navigate to Game Repository
 
 ```bash
-$ git clone https://github.com/thesnewby/atlas-T2_Hack_Sprint.git
-$ cd atlas-T2_Hack_Sprint
+$ git clone https://github.com/internashionalist/atlas-Oregon_Trail_3000.git
+$ cd atlas-Oregon_Trail_3000
 ```
 
 ## File Descriptions
@@ -99,9 +101,9 @@ Audio is low quality.
 
 ## Authors
 
-Stephen Newby <https://github.com/TheSnewby/><br>
-Nash Thames <https://github.com/internashionalist><br>
-Tsim Muaj Yang <https://github.com/Jimwall0>
+Stephen Newby [TheSnewby](https://github.com/TheSnewby)<br>
+Nash Thames [internashionalist](https://github.com/internashionalist)<br>
+Tsim Muaj Yang [Jimwall0](https://github.com/Jimwall0)
 
 ## Musical Assets
 
