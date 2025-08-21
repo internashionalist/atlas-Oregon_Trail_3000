@@ -11,13 +11,13 @@ import pygame
 import pygame_menu
 from pygame import mixer
 
-os.environ["SDL_OPENGL"] = "0"
-os.environ["SDL_VIDEODRIVER"] = "x11"
-os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
-os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
-os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
-os.environ["SDL_AUDIODRIVER"] = "dummy"
+# os.environ["SDL_OPENGL"] = "0"
+# os.environ["SDL_VIDEODRIVER"] = "x11"
+# os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
+# os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
+# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+# os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
+# s.environ["SDL_AUDIODRIVER"] = "dummy"
 # os.environ["SDL_AUDIODRIVER"] = 'mnt/c/Windows/System32/drivers/dmk.sys'
 # os.environ["SDL_AUDIODRIVER"] = "alsa"
 
