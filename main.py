@@ -3,6 +3,7 @@
 Main game loop and logic for Oregon Trail 3000.
 """
 
+import os
 import sys
 
 from collections import namedtuple
@@ -10,13 +11,13 @@ import pygame
 import pygame_menu
 from pygame import mixer
 
-# os.environ["SDL_OPENGL"] = "0"
-# os.environ["SDL_VIDEODRIVER"] = "x11"
-# os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
-# os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
-# os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
-# os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
-# os.environ["SDL_AUDIODRIVER"] = "dummy"
+os.environ["SDL_OPENGL"] = "0"
+os.environ["SDL_VIDEODRIVER"] = "x11"
+os.environ["LIBGL_ALWAYS_SOFTWARE"] = "1"
+os.environ["MESA_LOADER_DRIVER_OVERRIDE"] = "swrast"
+os.environ["DISPLAY"] = "host.docker.internal:0"  # comment out for running outside docker
+os.environ["XDG_RUNTIME_DIR"] = "/tmp/runtime-dir"
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 # os.environ["SDL_AUDIODRIVER"] = 'mnt/c/Windows/System32/drivers/dmk.sys'
 # os.environ["SDL_AUDIODRIVER"] = "alsa"
 
@@ -38,6 +39,7 @@ ORANGE = (255, 165, 0)
 
 BLACK = (0, 0, 0)
 
+pygame.init()
 font = pygame.font.Font(None, 36)
 
 def load_and_scale_image(image_path, screen_width, screen_height):
