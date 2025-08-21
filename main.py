@@ -483,13 +483,13 @@ def start_the_game(username):
         if health <= 0:
             dysentery_ending(username)
             return
-        elif ammo <= 0:
+        if ammo <= 0:
             ammo_ending()
             return
-        elif fuel <= 0:
+        if fuel <= 0:
             fuel_ending()
             return
-        elif supplies <= 0:
+        if supplies <= 0:
             supplies_ending()
             return
 
