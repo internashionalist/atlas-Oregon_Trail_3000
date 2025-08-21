@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="assets/OT3000.jpg" alt="Oregon Trail 3000" width="500"/>
+  <img src="assets/OT3000.jpg" alt="Oregon Trail 3000" width="1000"/>
 </p>
 
 # Oregon Trail 3000
