@@ -102,9 +102,9 @@ Audio is low quality.
 
 ## Authors
 
-Stephen Newby <https://github.com/TheSnewby/><br>
-Nash Thames <https://github.com/internashionalist><br>
-Tsim Muaj Yang <https://github.com/Jimwall0>
+Stephen Newby [TheSnewby](https://github.com/TheSnewby)<br>
+Nash Thames [internashionalist](https://github.com/internashionalist)<br>
+Tsim Muaj Yang [Jimwall0](https://github.com/Jimwall0)
 
 ## Musical Assets
 
