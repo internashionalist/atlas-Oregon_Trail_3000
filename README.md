@@ -9,9 +9,6 @@
 ---
 
 ## Table of Contents
-
-- [Oregon Trail 3000](#oregon-trail-3000)
-		- [Inspired by the childhood classic, *Oregon Trail 3000* is a survival game set in the harsh and unforgiving Martian landscape. Players must manage limited resources, face challenging encounters, and make life-or-death decisions to survive the journey to the colony of New Oregon.](#inspired-by-the-childhood-classic-oregon-trail-3000-is-a-survival-game-set-in-the-harsh-and-unforgiving-martian-landscape-players-must-manage-limited-resources-face-challenging-encounters-and-make-life-or-death-decisions-to-survive-the-journey-to-the-colony-of-new-oregon)
 	- [Table of Contents](#table-of-contents)
 	- [Environment](#environment)
 	- [Installation](#installation)
