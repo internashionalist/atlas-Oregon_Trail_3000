@@ -122,17 +122,17 @@ distributed systems, and emerging technologies.
 
 ## Authors
 
-- **Stephen Newby**
-  [TheSnewby](https://github.com/TheSnewby)<br>
-  [LinkedIn](https://www.linkedin.com/in/stephenjnewby)<br>
+- **Stephen Newby**  
+  [GitHub](https://github.com/TheSnewby)  
+  [LinkedIn](https://www.linkedin.com/in/stephenjnewby)  
   [Email](stephen.newby@atlasschool.com)
 - **Nash Thames**  
-  [GitHub](https://github.com/internashionalist)<br>
-  [LinkedIn](https://www.linkedin.com/in/nashthames/)<br>
+  [GitHub](https://github.com/internashionalist)  
+  [LinkedIn](https://www.linkedin.com/in/nashthames/)  
   [Email](taylor.thames@atlasschool.com)
-- **Tsim Muaj Yang**
-  [GitHub](https://github.com/Jimwall0)<br>
-  [LinkedIn](https://www.linkedin.com/in/tsimmuaj)<br>
+- **Tsim Muaj Yang**  
+  [GitHub](https://github.com/Jimwall0)  
+  [LinkedIn](https://www.linkedin.com/in/tsimmuaj)  
   [Email](tsim.muaj@atlasschool.com)
 
 ## Musical Assets
