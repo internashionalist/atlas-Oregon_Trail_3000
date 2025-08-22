@@ -113,24 +113,24 @@ constant adjustment to keep the survival experience tense yet fair.
 
 ## About the Developer
 
-	Nash Thames is an aspiring software developer with a strong foundation in computer science,
-	including advanced algorithms, systems programming, and Linux environments. 
-	He is passionate about problem-solving and dedicated to developing reliable, efficient, and
-	well-architected software. He is engaged in continuous learning and is interested in
-	contributing to research or projects that explore the intersection of software engineering,
-	distributed systems, and emerging technologies.
+Nash Thames is an aspiring software developer with a strong foundation in computer science,
+including advanced algorithms, systems programming, and Linux environments. 
+He is passionate about problem-solving and dedicated to developing reliable, efficient, and
+well-architected software. He is engaged in continuous learning and is interested in
+contributing to research or projects that explore the intersection of software engineering,
+distributed systems, and emerging technologies.
 
 ## Authors
 
 Stephen Newby<br>
-	[TheSnewby](https://github.com/TheSnewby)<br>
-	[LinkedIn](https://www.linkedin.com/in/stephenjnewby)
+  [TheSnewby](https://github.com/TheSnewby)<br>
+  [LinkedIn](https://www.linkedin.com/in/stephenjnewby)<br>
 Nash Thames<br>
-	[internashionalist](https://github.com/internashionalist)<br>
-	[LinkedIn](https://www.linkedin.com/in/nashthames)
+  [internashionalist](https://github.com/internashionalist)<br>
+  [LinkedIn](https://www.linkedin.com/in/nashthames)<br>
 Tsim Muaj Yang<br>
-	[Jimwall0](https://github.com/Jimwall0)<br>
-	[LinkedIn](https://www.linkedin.com/in/tsimmuaj)
+  [Jimwall0](https://github.com/Jimwall0)<br>
+  [LinkedIn](https://www.linkedin.com/in/tsimmuaj)
 
 ## Musical Assets
 
