@@ -18,7 +18,9 @@
 - [Encounters](#encounters)
 - [Resources](#resources)
 - [Key Features](#key-features)
+- [Challenges](#challenges)
 - [Bugs](#bugs)
+- [About the Developer](#about-the-developer)
 - [Authors](#authors)
 - [Musical Assets](#musical-assets)
 - [License](#license)
@@ -95,15 +97,40 @@ Players must monitor and use these precious resources strategically to complete 
 •	Boss encounters with unique challenges<br>
 •	Exciting Midi Audio
 
+## Challenges
+
+One of the greatest challenges was learning and mastering Pygame while simultaneously working
+under strict deadlines. Designing smooth event loops and ensuring responsive player input
+required careful planning and iteration. Integrating audio that complemented the retro-futuristic
+atmosphere added further complexity, as both quality and consistency were difficult to achieve.
+In addition, balancing the resource mechanics across encounters was an ongoing task, demanding
+constant adjustment to keep the survival experience tense yet fair.
+
+
 ## Bugs
 
-Audio is low quality.
+- Audio is low quality.
+
+## About the Developer
+
+	Nash Thames is an aspiring software developer with a strong foundation in computer science,
+	including advanced algorithms, systems programming, and Linux environments. 
+	He is passionate about problem-solving and dedicated to developing reliable, efficient, and
+	well-architected software. He is engaged in continuous learning and is interested in
+	contributing to research or projects that explore the intersection of software engineering,
+	distributed systems, and emerging technologies.
 
 ## Authors
 
-Stephen Newby [TheSnewby](https://github.com/TheSnewby)<br>
-Nash Thames [internashionalist](https://github.com/internashionalist)<br>
-Tsim Muaj Yang [Jimwall0](https://github.com/Jimwall0)
+Stephen Newby<br>
+	[TheSnewby](https://github.com/TheSnewby)<br>
+	[LinkedIn](https://www.linkedin.com/in/stephenjnewby)
+Nash Thames<br>
+	[internashionalist](https://github.com/internashionalist)<br>
+	[LinkedIn](https://www.linkedin.com/in/nashthames)
+Tsim Muaj Yang<br>
+	[Jimwall0](https://github.com/Jimwall0)<br>
+	[LinkedIn](https://www.linkedin.com/in/tsimmuaj)
 
 ## Musical Assets
 
